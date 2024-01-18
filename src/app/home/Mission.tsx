@@ -26,10 +26,13 @@ const Mission = () => {
                 Our Mission
               </div>
               <div className="lg:text-xl lg:mt-2 text-gray-500">
-                Our mission is "To add value to the Microenterprise industry by
-                providing technical assistance in areas where international best
-                practice and local innovations come together to strengthen
-                capacity of the Microenterprise sector in Nigeria".
+                <p>
+                  Our mission is &quotTo add value to the Microenterprise
+                  industry by providing technical assistance in areas where
+                  international best practice and local innovations come
+                  together to strengthen capacity of the Microenterprise sector
+                  in Nigeria&quot.
+                </p>
               </div>
             </div>
           </div>
@@ -40,11 +43,14 @@ const Mission = () => {
             </div>
             <div className="">
               <div className="text-2xl lg:text-4xl font-bold text-slate-700">
-                Our Vision
+                <h1>Our Vision</h1>
               </div>
               <div className="lg:text-xl lg:mt-2 text-gray-500">
-                Our vision is "To be a global financial service intermediation
-                in the area of MSME
+                <p>
+                  {' '}
+                  Our vision is &quot To be a global financial service
+                  intermediation in the area of MSME &quot
+                </p>
               </div>
             </div>
           </div>
