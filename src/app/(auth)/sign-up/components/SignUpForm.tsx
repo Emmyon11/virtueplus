@@ -5,15 +5,51 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
 import { SignUpFormSchema, TSignUpFormSchema } from '../../ztype';
+import axios from 'axios';
+import { FaSpinner } from 'react-icons/fa6';
+import { toast } from '@/components/ui/use-toast';
+import { useRouter } from 'next/navigation';
 
 const SignUpForm = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors, isLoading },
+    formState: { errors, isSubmitting },
   } = useForm<TSignUpFormSchema>({ resolver: zodResolver(SignUpFormSchema) });
 
-  const submit = ({ email, password }: TSignUpFormSchema) => {};
+  const router = useRouter();
+
+  const submit = async ({ name, email, password }: TSignUpFormSchema) => {
+    try {
+      const res = await axios.post('/api/auth/sign-up', {
+        name,
+        email,
+        password,
+      });
+      if (res.status === 200 || 201) {
+        toast({
+          variant: 'default',
+          title: 'Registration successful',
+          description: 'You can now log in your account',
+        });
+        router.push('/login');
+      }
+    } catch (error) {
+      if (axios.isAxiosError(error)) {
+        toast({
+          variant: 'destructive',
+          title: 'Uh oh! Something went wrong.',
+          description: error.response.data,
+        });
+      } else {
+        toast({
+          variant: 'destructive',
+          title: 'Uh oh! Something went wrong.',
+        });
+        console.log(error);
+      }
+    }
+  };
   return (
     <main>
       <div className="">
@@ -70,7 +106,13 @@ const SignUpForm = () => {
           </div>
           <div className="flex items-center justify-center mt-4">
             <Button className="w-full bg-gradient-to-r from-orange-400 to-green_custom">
-              Log In
+              {isSubmitting ? (
+                <div className="animate-spin">
+                  <FaSpinner />
+                </div>
+              ) : (
+                <div>Log In</div>
+              )}
             </Button>
           </div>
         </form>

@@ -1,6 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
-import { ArrowBottomRightIcon, ArrowRightIcon } from '@radix-ui/react-icons';
+import { ArrowRightIcon } from '@radix-ui/react-icons';
 
 interface ClassName {
   className?: string;

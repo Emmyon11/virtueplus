@@ -1,9 +1,14 @@
 import bcrypt from 'bcrypt';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import prisma from '@/lib/primaDB';
+import { PrismaAdapter } from '@auth/prisma-adapter';
+import { AuthOptions } from 'next-auth';
+import { JWT } from 'next-auth/jwt';
+import { User } from '@prisma/client';
 
-export const authOptions = {
+export const authOptions: AuthOptions = {
   // Configure one or more authentication providers
+  adapter: PrismaAdapter(prisma),
   providers: [
     CredentialsProvider({
       // The name to display on the sign in form (e.g. 'Sign in with...')
@@ -13,11 +18,10 @@ export const authOptions = {
       // e.g. domain, username, password, 2FA token, etc.
       // You can pass any HTML attribute to the <input> tag through the object.
       credentials: {
-        name: { label: 'name', type: 'text' },
         email: { label: 'email', type: 'email' },
         password: { label: 'Password', type: 'password' },
       },
-      async authorize(credentials, req) {
+      async authorize(credentials) {
         if (!credentials || !credentials.email || !credentials.password) {
           throw new Error('Please enter an email and password');
         }
@@ -44,9 +48,35 @@ export const authOptions = {
         if (!passwordMatch) {
           throw new Error('Incorrect password');
         }
+        delete user.hashedPassword;
+        delete user.emailVerified;
 
         return user;
       },
     }), // ...add more providers here
   ],
+  session: {
+    strategy: 'jwt',
+    maxAge: 30 * 24 * 60 * 60, // 30 days
+  },
+  callbacks: {
+    jwt: async ({ token, user, profile }) => {
+      if (user) {
+        token.email = user.email;
+        token.name = user.name;
+        token.userImage = user.image;
+      }
+
+      return token;
+    },
+    session: ({ session, token, user }) => {
+      if (token) {
+        session.user.email = token.email;
+        session.user.name = token.name;
+        session.user.image = token.picture;
+      }
+      return session;
+    },
+  },
+  secret: process.env.NEXTAUTH_SECRET,
 };

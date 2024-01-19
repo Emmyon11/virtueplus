@@ -10,8 +10,13 @@ import {
   SheetClose,
   SheetTrigger,
 } from '@/components/ui/sheet';
+import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
+import { getServerSession } from 'next-auth';
+import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
+import { getInitials } from '@/helpers/getInitials';
 
-const navbar = () => {
+const navbar = async () => {
+  const session = await getServerSession(authOptions);
   return (
     <main className="sticky z-50 top-0 backdrop-filter flex backdrop-blur-sm inset-x-0 justify-around items-center p-4">
       <div className="font-tektur text-2xl">
@@ -21,7 +26,17 @@ const navbar = () => {
         className1="hidden md:flex text-slate-900 text-slate-600 md:gap-6 text-xl"
         className2=""
       />
-      <AuthButton className="hidden md:flex" />
+      {session ? (
+        <>
+          <Avatar >
+            <AvatarImage src="" />
+            <AvatarFallback>{getInitials(session.user.name)}</AvatarFallback>
+          </Avatar>
+        </>
+      ) : (
+        <AuthButton className="hidden md:flex" />
+      )}
+
       <div className="md:hidden  ">
         <Sheet>
           <SheetTrigger>

@@ -4,6 +4,7 @@ import './globals.css';
 import { cn } from '@/lib/utils';
 import Navbar from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
+import { Toaster } from '@/components/ui/toaster';
 
 const inter = Inter({ subsets: ['latin'] });
 const tektur = Tektur({
@@ -49,6 +50,7 @@ export default function RootLayout({
       >
         <main className="relative flex flex-col min-h-screen">
           <Navbar />
+          <Toaster />
           {children}
           <Footer />
         </main>

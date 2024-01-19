@@ -27,7 +27,7 @@ const NavItems: React.FC<NavItemsProps> = ({
         {links.map((link) => {
           return (
             <h3 key={link.link}>
-              <a
+              <Link
                 href={link.link}
                 className={cn(
                   'min-h-16 flex items-center pl-2 cursor-pointer capitalize',
@@ -35,7 +35,7 @@ const NavItems: React.FC<NavItemsProps> = ({
                 )}
               >
                 {link.name}
-              </a>
+              </Link>
             </h3>
           );
         })}
