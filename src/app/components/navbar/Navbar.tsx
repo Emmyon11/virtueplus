@@ -14,9 +14,11 @@ import { authOptions } from '@/app/api/auth/[...nextauth]/authOptions';
 import { getServerSession } from 'next-auth';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { getInitials } from '@/helpers/getInitials';
+import UserMenuDropDown from './UserMenuDropDown';
 
 const navbar = async () => {
   const session = await getServerSession(authOptions);
+
   return (
     <main className="sticky z-50 top-0 backdrop-filter flex backdrop-blur-sm inset-x-0 justify-around items-center p-4">
       <div className="font-tektur text-2xl">
@@ -28,10 +30,12 @@ const navbar = async () => {
       />
       {session ? (
         <>
-          <Avatar >
-            <AvatarImage src="" />
-            <AvatarFallback>{getInitials(session.user.name)}</AvatarFallback>
-          </Avatar>
+          <UserMenuDropDown role={session.user.role} name={session.user.name}>
+            <Avatar>
+              <AvatarImage src="" />
+              <AvatarFallback>{getInitials(session.user.name)}</AvatarFallback>
+            </Avatar>
+          </UserMenuDropDown>
         </>
       ) : (
         <AuthButton className="hidden md:flex" />

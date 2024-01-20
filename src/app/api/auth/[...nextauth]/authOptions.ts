@@ -1,10 +1,8 @@
 import bcrypt from 'bcrypt';
 import CredentialsProvider from 'next-auth/providers/credentials';
 import prisma from '@/lib/primaDB';
-import { PrismaAdapter } from '@auth/prisma-adapter';
+import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { AuthOptions } from 'next-auth';
-import { JWT } from 'next-auth/jwt';
-import { User } from '@prisma/client';
 
 export const authOptions: AuthOptions = {
   // Configure one or more authentication providers
@@ -35,7 +33,7 @@ export const authOptions: AuthOptions = {
 
         // if no user was found
         if (!user || !user?.hashedPassword) {
-          throw new Error('No user found');
+          throw new Error('No user with that email address');
         }
 
         // check to see if password matches
@@ -65,6 +63,7 @@ export const authOptions: AuthOptions = {
         token.email = user.email;
         token.name = user.name;
         token.userImage = user.image;
+        token.role = user.role;
       }
 
       return token;
@@ -74,6 +73,7 @@ export const authOptions: AuthOptions = {
         session.user.email = token.email;
         session.user.name = token.name;
         session.user.image = token.picture;
+        session.user.role = token.role;
       }
       return session;
     },

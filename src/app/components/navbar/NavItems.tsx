@@ -10,7 +10,7 @@ interface NavItemsProps {
 
 export const links = [
   { name: 'Home', link: '/' },
-  { name: 'goods', link: '/goods' },
+  { name: 'products', link: '/products' },
   { name: 'services', link: '/services' },
   { name: 'faq', link: '/faq' },
   { name: 'about', link: '/about' },
