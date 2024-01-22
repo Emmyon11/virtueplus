@@ -6,8 +6,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("POSTGRES_URL")
+  directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 generator erd {
@@ -67,15 +68,15 @@ model VerificationToken {
 }
 
 model Product {
-  id           Int          @id @default(autoincrement())
+  id           String       @id @default(cuid())
   name         String
   image        String?
   manufacturer String?
   description  String?
   price        Float?
   type         ProductTypes
-  createdAt    DateTime     @default(now())
-  updatedAt    DateTime     @updatedAt
+  createdAt    DateTime?    @default(now())
+  updatedAt    DateTime?    @updatedAt
 }
 
 enum ProductTypes {

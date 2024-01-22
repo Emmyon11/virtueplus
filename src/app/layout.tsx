@@ -5,7 +5,6 @@ import { cn } from '@/lib/utils';
 import Navbar from './components/navbar/Navbar';
 import Footer from './components/footer/Footer';
 import { Toaster } from '@/components/ui/toaster';
-
 const inter = Inter({ subsets: ['latin'] });
 const tektur = Tektur({
   subsets: ['latin'],
