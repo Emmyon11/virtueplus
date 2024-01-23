@@ -54,7 +54,9 @@ const LoginForm = () => {
               placeholder="example@email.com"
               {...register('email')}
             />
-            {errors?.email && <p>{errors.email.message}</p>}
+            {errors?.email && (
+              <p className="text-sm text-red-500">{errors.email.message}</p>
+            )}
           </div>
           <div className="">
             <Label>Password</Label>
@@ -63,7 +65,9 @@ const LoginForm = () => {
               placeholder="12345"
               {...register('password')}
             />
-            {errors?.password && <p>{errors.password.message}</p>}
+            {errors?.password && (
+              <p className="text-sm text-red-500">{errors.password.message}</p>
+            )}
           </div>
           <div className="flex items-center justify-center mt-4">
             <Button className="w-full bg-gradient-to-r from-orange-400 to-green_custom">

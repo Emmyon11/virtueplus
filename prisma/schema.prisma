@@ -52,6 +52,7 @@ model User {
   role           Role      @default(User)
   accounts       Account[]
   sessions       Session[]
+  order          Order[]
 }
 
 enum Role {
@@ -74,13 +75,51 @@ model Product {
   manufacturer String?
   description  String?
   price        Float?
+  quantity     Int?         @default(1)
   type         ProductTypes
   createdAt    DateTime?    @default(now())
   updatedAt    DateTime?    @updatedAt
+  CartItem     CartItem[]
+  Order        Order?       @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId      String?
 }
 
 enum ProductTypes {
   Goods
   Services
   Courses
+}
+
+model Cart {
+  userEmail String     @id @unique
+  cartItems CartItem[]
+  createdAt DateTime?  @default(now())
+  updatedAt DateTime?  @updatedAt
+}
+
+model CartItem {
+  id        String    @id @default(cuid())
+  quantity  Int
+  product   Product   @relation(fields: [productId], references: [id])
+  productId String
+  createdAt DateTime? @default(now())
+  updatedAt DateTime? @updatedAt
+  Cart      Cart?     @relation(fields: [cartId], references: [userEmail])
+  cartId    String?
+}
+
+model Order {
+  id        String      @id @default(cuid())
+  userEmail String
+  user      User        @relation(fields: [userEmail], references: [email], onDelete: Cascade)
+  products  Product[]
+  status    OrderStatus @default(Pending)
+  address   String
+  total     Float
+}
+
+enum OrderStatus {
+  Pending
+  Transit
+  Delivered
 }
