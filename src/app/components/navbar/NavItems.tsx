@@ -10,8 +10,9 @@ interface NavItemsProps {
 
 export const links = [
   { name: 'Home', link: '/' },
-  { name: 'products', link: '/products' },
+  { name: 'goods', link: '/goods' },
   { name: 'services', link: '/services' },
+  { name: 'courses', link: '/courses' },
   { name: 'faq', link: '/faq' },
   { name: 'about', link: '/about' },
 ];

@@ -9,18 +9,7 @@ import {
   PopoverTrigger,
 } from '@/components/ui/popover';
 import { getProducts } from './action';
-
-const exampleProduct: Product = {
-  id: 'weioruisdfi',
-  name: 'Chips image',
-  description: 'A bag of chips',
-  price: 30,
-  type: 'Goods',
-  image: '/images/product.webp',
-  manufacturer: '',
-  createdAt: new Date(),
-  updatedAt: new Date(),
-};
+import ProductPage from './components/ProductPage';
 
 const Products = async () => {
   const products = await getProducts();
@@ -39,11 +28,7 @@ const Products = async () => {
         </Popover>
       </div>
 
-      <div className="grid grid-cols-4 gap-5 p-5">
-        {products?.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
-      </div>
+      <ProductPage products={products} />
     </main>
   );
 };

@@ -6,14 +6,12 @@ const Mission = () => {
   return (
     <main>
       <div className="font-nunito grid md:grid-cols-2 md:p-4">
-        <div className="">
+        <div className="relative">
           <Image
-            width={500}
-            height={500}
-            layout="responsive"
+            fill
             src="/images/mision.jpg"
             alt="mission image"
-            className=" md:shadow-md"
+            className="object-cover md:shadow-md"
           />
         </div>
         <div className="">

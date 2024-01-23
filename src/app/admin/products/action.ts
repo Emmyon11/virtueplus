@@ -17,6 +17,7 @@ export const getProduct = async (id: string) => {
     const res = await prisma.product.findUnique({
       where: { id },
     });
+    return res;
   } catch (error) {
     console.log(error);
     throw new Error('Failed to get products');
@@ -27,6 +28,7 @@ export const deleteProduct = async (id: string) => {
     const res = await prisma.product.delete({
       where: { id },
     });
+    return res;
   } catch (error) {
     console.log(error);
     throw new Error('Failed to get products');
@@ -38,6 +40,7 @@ export const updateProduct = async (id: string, data: Product) => {
       where: { id },
       data,
     });
+    return res;
   } catch (error) {
     console.log(error);
     throw new Error('Failed to get products');
@@ -55,6 +58,7 @@ export const addProduct = async (data: TProductFormSchema) => {
         description: data.description,
       },
     });
+    return res;
   } catch (error) {
     console.log(error);
     throw new Error('Failed to get products');

@@ -1,12 +1,12 @@
 import SingleProductPage from '@/app/components/SingleProductPage';
 import { getSingleProduct } from '@/app/components/actions/productAction';
 
-const Service = async ({ params }: { params: { service: string } }) => {
-  const product = await getSingleProduct(params.service);
+const Course = async ({ params }: { params: { course: string } }) => {
+  const product = await getSingleProduct(params.course);
   return (
-    <main>
+    <main className="min-h-screen">
       <SingleProductPage product={product} />
     </main>
   );
 };
-export default Service;
+export default Course;

@@ -1,11 +1,10 @@
 import Link from 'next/link';
 import { FaChartBar, FaShoppingBag } from 'react-icons/fa';
-import { FaCartPlus, FaFoursquare, FaUser } from 'react-icons/fa6';
+import { FaCartPlus, FaUser } from 'react-icons/fa6';
 
 const side_links = [
-  { name: 'dashboard', link: '/admin/dashboard', icon: <FaChartBar /> },
+  { name: 'dashboard', link: '/admin', icon: <FaChartBar /> },
   { name: 'products', link: '/admin/products', icon: <FaShoppingBag /> },
-  { name: 'categories', link: '/admin/categories', icon: <FaFoursquare /> },
   { name: 'orders', link: '/admin/orders', icon: <FaCartPlus /> },
   { name: 'users', link: '/admin/users', icon: <FaUser /> },
 ];

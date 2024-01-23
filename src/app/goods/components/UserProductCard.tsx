@@ -1,21 +1,27 @@
-import { Product } from '@prisma/client';
+'use client';
+import { Product, ProductTypes } from '@prisma/client';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 type ProductCardType = {
   product: Product;
+  category: ProductTypes;
 };
-const ProductCard = ({ product }: ProductCardType) => {
+const UserProductCard = ({ product, category }: ProductCardType) => {
+  const router = useRouter();
   return (
     <main>
-      <div className="grid overflow-clip bg-white shadow-md min-h-80">
+      <div
+        onClick={() => router.push(`/${category.toLowerCase()}/${product.id}`)}
+        className="grid bg-gray-100 overflow-clip shadow-md min-h-80 cursor-pointer"
+      >
         {/* Image segment */}
-        <div className="flex items-center overflow-clip h-64 justify-center">
+        <div className="flex items-center relative overflow-clip h-64 justify-center">
           <Image
-            width={300}
-            height={300}
+            fill
             src={product.image ? product.image : '/images/product.webp'}
             alt={product.name}
-            className=""
+            className="object-cover"
           />
         </div>
         {/* Info segment */}
@@ -29,4 +35,4 @@ const ProductCard = ({ product }: ProductCardType) => {
     </main>
   );
 };
-export default ProductCard;
+export default UserProductCard;

@@ -1,10 +1,10 @@
 import ProductByCategory from '@/components/personal/ProductByCategory';
 
-const Services = () => {
+const Goods = async () => {
   return (
     <main className="p-4 min-h-screen">
-      <ProductByCategory category="Services" />
+      <ProductByCategory category="Goods" />
     </main>
   );
 };
-export default Services;
+export default Goods;
