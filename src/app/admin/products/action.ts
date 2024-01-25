@@ -1,6 +1,5 @@
 'use server';
 import prisma from '@/lib/primaDB';
-import { uploadFiles } from '@/utils/uploadthing';
 import { Product } from '@prisma/client';
 import { TProductFormSchema } from './components/ptype';
 

@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { FaSpinner } from 'react-icons/fa6';
 import { signIn } from 'next-auth/react';
 import { toast } from '@/components/ui/use-toast';
+import { useRouter } from 'next/navigation';
 
 const LoginForm = () => {
   const {
@@ -15,6 +16,7 @@ const LoginForm = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<TLoginFormSchema>({ resolver: zodResolver(LoginFormSchema) });
+  const router = useRouter();
 
   const submit = async ({ email, password }: TLoginFormSchema) => {
     try {
@@ -29,6 +31,7 @@ const LoginForm = () => {
           title: 'Logged in successfully',
           description: 'You can now log in your account',
         });
+        router.push('/');
       } else if (res.error) {
         toast({
           variant: 'destructive',

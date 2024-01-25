@@ -49,6 +49,12 @@ model User {
   emailVerified  DateTime?
   hashedPassword String
   image          String?
+  address        String?
+  street         String?
+  city           String?
+  state          String?
+  country        String?
+  mobileNo       String?
   role           Role      @default(User)
   accounts       Account[]
   sessions       Session[]
@@ -80,8 +86,6 @@ model Product {
   createdAt    DateTime?    @default(now())
   updatedAt    DateTime?    @updatedAt
   CartItem     CartItem[]
-  Order        Order?       @relation(fields: [orderId], references: [id], onDelete: Cascade)
-  orderId      String?
 }
 
 enum ProductTypes {
@@ -106,14 +110,23 @@ model CartItem {
   updatedAt DateTime? @updatedAt
   Cart      Cart?     @relation(fields: [cartId], references: [userEmail])
   cartId    String?
+  Order     Order?    @relation(fields: [orderId], references: [id])
+  orderId   String?
 }
 
 model Order {
   id        String      @id @default(cuid())
   userEmail String
+  name      String
+  email     String
   user      User        @relation(fields: [userEmail], references: [email], onDelete: Cascade)
-  products  Product[]
+  cartItems CartItem[]
   status    OrderStatus @default(Pending)
+  street    String
+  city      String
+  state     String
+  country   String
+  mobileNo  String
   address   String
   total     Float
 }

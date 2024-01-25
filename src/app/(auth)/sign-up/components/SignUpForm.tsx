@@ -64,8 +64,8 @@ const SignUpForm = () => {
               placeholder="Firstname Lastname"
               {...register('name')}
             />
-            {errors?.email && (
-              <p className="text-sm text-red-500">{errors.email.message}</p>
+            {errors?.name && (
+              <p className="text-sm text-red-500">{errors.name.message}</p>
             )}
           </div>
           <div className="">
@@ -111,7 +111,7 @@ const SignUpForm = () => {
                   <FaSpinner />
                 </div>
               ) : (
-                <div>Log In</div>
+                <div>Sign Up</div>
               )}
             </Button>
           </div>

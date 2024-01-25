@@ -8,6 +8,7 @@ import { z } from 'zod';
 import { addToCart, getUserCart } from './actions/cartActions';
 import { toast } from '@/components/ui/use-toast';
 import { FaSpinner } from 'react-icons/fa6';
+import { revalidatePath } from 'next/cache';
 
 const addToCartSchema = z.object({
   quantity: z.preprocess(
@@ -36,7 +37,6 @@ const SinglePAddCartBtn = ({ product }: { product: Product }) => {
         quantity: data.quantity,
         userEmail: user.email,
       });
-      const userCart = await getUserCart(user.email);
       if (res?.id) {
         toast({
           variant: 'default',
@@ -44,7 +44,6 @@ const SinglePAddCartBtn = ({ product }: { product: Product }) => {
           description: `${product.name} added to cart`,
         });
       }
-      console.log(userCart);
     } catch (error) {
       console.log(error);
       toast({

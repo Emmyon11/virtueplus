@@ -15,6 +15,7 @@ import { getServerSession } from 'next-auth';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { getInitials } from '@/helpers/getInitials';
 import UserMenuDropDown from './UserMenuDropDown';
+import Cart from '../cart/Cart';
 
 const navbar = async () => {
   const session = await getServerSession(authOptions);
@@ -29,14 +30,20 @@ const navbar = async () => {
         className2=""
       />
       {session ? (
-        <>
-          <UserMenuDropDown role={session.user.role} name={session.user.name}>
+        <div className="grid grid-cols-2 gap-5">
+          <UserMenuDropDown
+            role={session.user.role}
+            email={session.user.email}
+            name={session.user.name}
+          >
             <Avatar>
               <AvatarImage src="" />
               <AvatarFallback>{getInitials(session.user.name)}</AvatarFallback>
             </Avatar>
           </UserMenuDropDown>
-        </>
+
+          <Cart email={session.user.email} />
+        </div>
       ) : (
         <AuthButton className="hidden md:flex" />
       )}

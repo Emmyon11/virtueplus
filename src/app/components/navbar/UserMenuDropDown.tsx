@@ -12,14 +12,22 @@ import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { ReactElement } from 'react';
 import { FaCartPlus } from 'react-icons/fa6';
+import Cart from '../cart/Cart';
+import SignOutBtn from '../SignOutBtn';
 
 type UserMenuDropDownProp = {
   children: ReactElement;
   role: Role;
   name: string;
+  email: string;
 };
 
-const UserMenuDropDown = ({ children, role, name }: UserMenuDropDownProp) => {
+const UserMenuDropDown = ({
+  children,
+  role,
+  email,
+  name,
+}: UserMenuDropDownProp) => {
   return (
     <main>
       <DropdownMenu>
@@ -28,10 +36,7 @@ const UserMenuDropDown = ({ children, role, name }: UserMenuDropDownProp) => {
           <DropdownMenuLabel>{name}</DropdownMenuLabel>
           <DropdownMenuSeparator />
           <div className="">
-            <DropdownMenuItem>
-              <FaCartPlus />
-              <div>cart</div>
-            </DropdownMenuItem>
+            <DropdownMenuItem></DropdownMenuItem>
             {role == 'User' ? (
               <DropdownMenuItem>
                 <Link href="/admin">Admin</Link>
@@ -41,7 +46,7 @@ const UserMenuDropDown = ({ children, role, name }: UserMenuDropDownProp) => {
             )}
 
             <DropdownMenuItem>
-              <Button variant="destructive">Sign Out</Button>
+              <SignOutBtn />
             </DropdownMenuItem>
           </div>
         </DropdownMenuContent>

@@ -1,7 +1,8 @@
 'use server';
 import prisma from '@/lib/primaDB';
 import { uploadFiles } from '@/utils/uploadthing';
-import { CartItem, Product } from '@prisma/client';
+import { CartItem, Order, Product } from '@prisma/client';
+import { revalidatePath } from 'next/cache';
 
 export const getUserCart = async (email: string) => {
   try {
@@ -10,14 +11,45 @@ export const getUserCart = async (email: string) => {
         userEmail: email,
       },
       include: {
-        cartItems: true,
+        cartItems: {
+          include: {
+            product: true,
+          },
+        },
       },
     });
+
     return res;
   } catch (error) {
     console.log(error);
   }
 };
+
+interface CartItemID {
+  id: string;
+}
+
+export const createOrder = async ({
+  data,
+  cartItemsId,
+}: {
+  data: Order;
+  cartItemsId: CartItemID[];
+}) => {
+  try {
+    const order = await prisma.order.create({
+      data: {
+        ...data,
+        cartItems: {
+          connect: [...cartItemsId],
+        },
+      },
+    });
+
+    return order;
+  } catch (error) {}
+};
+
 export const getCartItem = async (id: string) => {
   try {
     const res = await prisma.cartItem.findUnique({
@@ -34,6 +66,7 @@ export const deleteCartItem = async (id: string) => {
     const res = await prisma.cartItem.delete({
       where: { id },
     });
+    revalidatePath('/', 'layout');
     return res;
   } catch (error) {
     console.log(error);
@@ -46,6 +79,7 @@ export const updateCartItem = async (id: string, data: Partial<CartItem>) => {
       where: { id },
       data,
     });
+    revalidatePath('/', 'layout');
     return res;
   } catch (error) {
     console.log(error);
@@ -78,6 +112,8 @@ export const addToCart = async ({
     const cartItem = await prisma.cartItem.create({
       data: { quantity, cartId: userEmail, productId },
     });
+
+    revalidatePath('/', 'layout');
 
     return cartItem;
   } catch (error) {
