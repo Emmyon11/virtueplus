@@ -1,6 +1,12 @@
 import ProfileDetail from './components/ProfileDetail';
 import Orders from './components/Orders';
-const User = () => {
+import { getServerSession } from 'next-auth';
+import { redirect } from 'next/navigation';
+const User = async () => {
+  const session = await getServerSession();
+  if (!session) {
+    redirect('/login');
+  }
   return (
     <div className="relative min-h-screen">
       {/* Hello world */}
@@ -20,7 +26,7 @@ const User = () => {
           <div className="flex -mx-4 flex-wrap">
             <div className="relative w-full min-h-1 px-4 ">
               <h1 className="font-nunito font-bold text-white text-8xl">
-                Welcome Jesseca
+                Welcome {session.user.name}
               </h1>
             </div>
           </div>

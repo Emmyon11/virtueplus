@@ -7,19 +7,24 @@ import { FaX } from 'react-icons/fa6';
 import { useMutation } from 'react-query';
 import { deleteCartItem } from '../actions/cartActions';
 import { toast } from '@/components/ui/use-toast';
+import { useRouter } from 'next/navigation';
 
 const CartItem = ({
   product,
   quantity,
   itemId,
+  remove,
 }: {
   product: Product;
   quantity: number;
   itemId: string;
+  remove: boolean;
 }) => {
   const deleteItem = useMutation((id: string) => {
     return deleteCartItem(id);
   });
+
+  const router = useRouter();
 
   if (deleteItem.isSuccess) {
     toast({
@@ -30,7 +35,10 @@ const CartItem = ({
   }
   const image = product.image;
   return (
-    <div className="space-y-3 py-2">
+    <div
+      onClick={() => router.push(`/goods/${product.id}`)}
+      className="space-y-3 py-2 cursor-pointer"
+    >
       <div className="flex items-start justify-between gap-4">
         <div className="flex items-center space-x-4">
           <div className="relative aspect-square h-16 w-16 min-w-fit overflow-hidden rounded">
@@ -59,23 +67,24 @@ const CartItem = ({
             <span className="line-clamp-1 text-xs capitalize text-muted-foreground">
               {product.type}
             </span>
-
-            <div className="mt-4 text-xs text-muted-foreground">
-              <button
-                disabled={deleteItem.isLoading}
-                onClick={() => {
-                  deleteItem.mutate(itemId);
-                }}
-                className="flex items-center text-red-500 gap-0.5"
-              >
-                <FaX className="w-3 h-4" />
-                {deleteItem.isLoading ? (
-                  <div className="">Removing...</div>
-                ) : (
-                  'Remove'
-                )}
-              </button>
-            </div>
+            {remove && (
+              <div className="mt-4 text-xs text-muted-foreground">
+                <button
+                  disabled={deleteItem.isLoading}
+                  onClick={() => {
+                    deleteItem.mutate(itemId);
+                  }}
+                  className="flex items-center text-red-500 gap-0.5"
+                >
+                  <FaX className="w-3 h-4" />
+                  {deleteItem.isLoading ? (
+                    <div className="">Removing...</div>
+                  ) : (
+                    'Remove'
+                  )}
+                </button>
+              </div>
+            )}
           </div>
         </div>
 

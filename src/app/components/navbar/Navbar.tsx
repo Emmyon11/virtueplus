@@ -21,7 +21,7 @@ const navbar = async () => {
   const session = await getServerSession(authOptions);
 
   return (
-    <main className="sticky z-50 top-0 backdrop-filter flex backdrop-blur-sm inset-x-0 justify-around items-center p-4">
+    <main className="sticky z-50 top-0 backdrop-filter  flex backdrop-blur-lg inset-x-0 justify-around items-center p-4">
       <div className="font-tektur text-2xl">
         VIRTUEPLUS<span className="text-green-400">2</span>
       </div>

@@ -25,17 +25,15 @@ const SinglePAddCartBtn = ({ product }: { product: Product }) => {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<TaddTocart>({ resolver: zodResolver(addToCartSchema) });
-  const {
-    data: { user },
-  } = useSession();
+  const session = useSession();
 
   const submit = async (data: TaddTocart) => {
-    if (!user) return; // not logged in
+    if (!session?.data?.user) return; // not logged in
     try {
       const res = await addToCart({
         productId: product.id,
         quantity: data.quantity,
-        userEmail: user.email,
+        userEmail: session?.data?.user.email,
       });
       if (res?.id) {
         toast({

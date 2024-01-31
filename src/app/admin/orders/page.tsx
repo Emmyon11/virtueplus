@@ -1,4 +1,10 @@
+import AdminOrdersPage from './components/AdminOrdersPage';
+
 const Orders = () => {
-  return <div>Orders</div>;
+  return (
+    <div>
+      <AdminOrdersPage />
+    </div>
+  );
 };
 export default Orders;

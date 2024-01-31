@@ -9,6 +9,7 @@ import { FaSpinner } from 'react-icons/fa6';
 import { signIn } from 'next-auth/react';
 import { toast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
+import { revalidatePath } from 'next/cache';
 
 const LoginForm = () => {
   const {

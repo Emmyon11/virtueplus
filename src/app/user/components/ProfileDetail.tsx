@@ -3,18 +3,20 @@ import { Button } from '@/components/ui/button';
 import Image from 'next/image';
 import Link from 'next/link';
 import EditButton from './EditButton';
+import { getServerSession } from 'next-auth';
 
-const ProfileDetail = () => {
+const ProfileDetail = async () => {
+  const { user } = await getServerSession();
   return (
-    <div className="mx-8 p-5 mb-6 mt-10 lg:mt-0  order-1 lg:order-2 relative grid justify-center  break-words basis-1/3 border-opacity-5 border-black bg-clip-border rounded-sm min-w-0 bg-white shadow-md">
+    <div className="mx-8 p-5 mb-6 mt-10 lg:mt-0  order-1 lg:order-2 relative grid justify-center max-h-[35rem]  break-words basis-1/3 border-opacity-5 border-black bg-clip-border rounded-sm min-w-0 bg-white shadow-md">
       <div className="flex w-full -z-0 -top-10 absolute  justify-center">
         <div className=" relative  h-52 rounded-full overflow-clip w-52">
           <Link href="#">
             <Image
               alt="profile image"
               fill
-              src="https://demos.creative-tim.com/argon-dashboard/assets-old/img/theme/team-4.jpg"
-              className=""
+              src={user.image ? user.image : '/images/avater.svg'}
+              className="relative"
             />
           </Link>
         </div>
@@ -25,24 +27,13 @@ const ProfileDetail = () => {
         </div>
       </div>
       <div className="grid gap-6">
-        <div className="flex text-lg text-slate-600 justify-center gap-5">
-          <div className="grid  text-center">
-            <span className="font-bold">22</span>
-            <span className="text-gray-400 text-base">Friends</span>
-          </div>
-          <div className="grid text-center">
-            <span className="font-bold">10</span>
-            <span className="text-gray-400 text-base">Photos</span>
-          </div>
-        </div>
         <div className="text-center">
-          <h3 className="text-lg text-slate-700">Jessica Jones</h3>
+          <h3 className="text-lg text-slate-700">{user.name}</h3>
           <hr className="my-4" />
           <p>
             Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick
             Murphy — writes, performs and records all of his own music.
           </p>
-          <Link href="#">Show more</Link>
         </div>
       </div>
     </div>

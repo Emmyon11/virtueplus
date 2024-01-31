@@ -48,7 +48,7 @@ export default function RootLayout({
           mukta.variable
         )}
       >
-        <main className="relative flex flex-col min-h-screen">
+        <main className="relative m-0 min-h-screen">
           <Provider>
             <Navbar />
             <Toaster />

@@ -17,7 +17,7 @@ import { NewsLetter } from '@/app/components/NewsLetter';
 const Footer = () => {
   return (
     <main>
-      <div className="bg-black text-secondary font-mukta p-4 grid md:grid-cols-2 lg:grid-cols-3 gap-6 py-7">
+      <div className="bg-black text-secondary relative h-full font-mukta p-4 grid md:grid-cols-2 lg:grid-cols-3 gap-6 py-7">
         <div className="tracking-widest uppercase text-3xl font-semibold">
           Virtueplus<span className="text-xl text-green_custom">2</span>
         </div>

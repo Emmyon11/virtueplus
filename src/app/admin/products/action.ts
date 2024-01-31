@@ -2,6 +2,7 @@
 import prisma from '@/lib/primaDB';
 import { Product } from '@prisma/client';
 import { TProductFormSchema } from './components/ptype';
+import { revalidatePath } from 'next/cache';
 
 export const getProducts = async () => {
   try {
@@ -27,6 +28,7 @@ export const deleteProduct = async (id: string) => {
     const res = await prisma.product.delete({
       where: { id },
     });
+    revalidatePath('/', 'page');
     return res;
   } catch (error) {
     console.log(error);
@@ -39,24 +41,29 @@ export const updateProduct = async (id: string, data: Product) => {
       where: { id },
       data,
     });
+    revalidatePath('/', 'page');
     return res;
   } catch (error) {
     console.log(error);
     throw new Error('Failed to get products');
   }
 };
-export const addProduct = async (data: TProductFormSchema) => {
+export const addProduct = async (data: Partial<Product>) => {
   try {
     const res = await prisma.product.create({
       data: {
+        ...data,
         name: data.name,
         type: data.type,
-        price: parseFloat(data.price),
-        image: data.image,
-        manufacturer: data.manufacturer,
-        description: data.description,
+        // name: data.name,
+        // type: data.type,
+        // price: parseFloat(data.price),
+        // image: data.image,
+        // manufacturer: data.manufacturer,
+        // description: data.description,
       },
     });
+    revalidatePath('/', 'page');
     return res;
   } catch (error) {
     console.log(error);

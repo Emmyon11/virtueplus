@@ -5,10 +5,10 @@ import SinglePAddCartBtn from './SinglePAddCartBtn';
 
 const SingleProductPage = ({ product }: { product: Product }) => {
   return (
-    <main className="p-20  h-full">
-      <div className="grid gap-14 px-10 grid-cols-2 h-[40rem]">
+    <main className="lg:p-20 p-8 h-full">
+      <div className="grid gap-14 md:px-10  lg:grid-cols-2  lg:min-h-[40rem]">
         {/* Product pictures */}
-        <div className="relative overflow-clip">
+        <div className="relative min-h-96 rounded-sm overflow-clip">
           <Image
             src={product.image}
             alt={`${product.name} image`}
@@ -17,7 +17,7 @@ const SingleProductPage = ({ product }: { product: Product }) => {
           />
         </div>
         {/* Product details */}
-        <div className="font-nunito flex flex-col gap-24">
+        <div className="font-nunito flex flex-col gap-8 lg:gap-24">
           <div className="grid gap-5">
             <div className="">
               {' '}

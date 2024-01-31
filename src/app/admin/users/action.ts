@@ -6,6 +6,11 @@ import { revalidatePath } from 'next/cache';
 export const getUsers = async () => {
   try {
     const res = await prisma.user.findMany();
+    res.forEach((user) => {
+      delete user.hashedPassword;
+      delete user.emailVerified;
+    });
+    return res;
   } catch (error) {
     console.log(error);
     throw new Error('Failed to get users');
@@ -16,6 +21,28 @@ export const getUser = async (email: string) => {
     const res = await prisma.user.findUnique({
       where: { email },
     });
+    delete res.hashedPassword;
+    delete res.emailVerified;
+    return res;
+  } catch (error) {
+    console.log(error);
+    throw new Error('Failed to get user');
+  }
+};
+
+export const getUserOrders = async (email: string) => {
+  try {
+    const res = await prisma.order.findMany({
+      where: { userEmail: email },
+      include: {
+        cartItems: {
+          include: {
+            product: true,
+          },
+        },
+      },
+    });
+
     return res;
   } catch (error) {
     console.log(error);
@@ -39,6 +66,8 @@ export const updateUser = async (email: string, data: Partial<Product>) => {
       data,
     });
     revalidatePath('/user', 'page');
+    delete res.hashedPassword;
+    delete res.emailVerified;
     return res;
   } catch (error) {
     console.log(error);

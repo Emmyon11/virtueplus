@@ -12,7 +12,7 @@ import { useSession } from 'next-auth/react';
 import { useMutation, useQuery } from 'react-query';
 import { getUser, updateUser } from '@/app/admin/users/action';
 import { User } from '@prisma/client';
-import { useDrawerState } from '@/utils/store';
+import { useDrawerState, userState } from '@/utils/store';
 
 const UserUpdateForm = () => {
   const {
@@ -25,6 +25,7 @@ const UserUpdateForm = () => {
 
   const { data: session, status } = useSession();
   const closedrawer = useDrawerState((state) => state.closeDrawer);
+  const setUser = userState((state) => state.setUser);
 
   const router = useRouter();
 
@@ -37,6 +38,10 @@ const UserUpdateForm = () => {
   const updateUserData = useMutation((data: Partial<User>) => {
     return updateUser(session.user.email, data);
   });
+
+  if (user) {
+    setUser(user);
+  }
 
   const submit = async (data: TUserUpdateFormSchema) => {
     try {

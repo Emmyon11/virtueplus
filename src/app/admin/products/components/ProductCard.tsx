@@ -9,13 +9,12 @@ const ProductCard = ({ product }: ProductCardType) => {
     <main>
       <div className="grid overflow-clip bg-white shadow-md min-h-80">
         {/* Image segment */}
-        <div className="flex items-center overflow-clip h-64 justify-center">
+        <div className="flex items-center relative overflow-clip h-64 justify-center">
           <Image
-            width={300}
-            height={300}
+            fill
             src={product.image ? product.image : '/images/product.webp'}
             alt={product.name}
-            className=""
+            className="object-cover"
           />
         </div>
         {/* Info segment */}

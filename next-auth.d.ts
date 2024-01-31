@@ -1,19 +1,13 @@
 import { Role } from '@prisma/client';
+import { DefaultSession, DefaultUser, User } from 'next-auth';
 
 declare module 'next-auth' {
   /** Returned by the `jwt` callback and `getToken`, when using JWT sessions */
-  interface User {
-    name: string;
-    email: string;
+  interface User extends DefaultUser {
     role: Role;
-    image: string;
-    id: string;
   }
-  interface Session {
-    user: {
-      /** The user's postal address. */
-      role: Role;
-    } & DefaultSession['user'];
+  interface Session extends DefaultSession {
+    user?: User;
   }
 }
 

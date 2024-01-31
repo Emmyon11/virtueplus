@@ -10,16 +10,20 @@ import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { useMutation, useQuery } from 'react-query';
 import { getUser, updateUser } from '@/app/admin/users/action';
-import { User } from '@prisma/client';
+import { Order, User } from '@prisma/client';
 import { useDrawerState } from '@/utils/store';
 import { OrderFormSchema, TOrderFormSchema } from './orderZSchema.';
 import { formatPrice } from '@/lib/utils';
+import { CartItemID, createOrder } from '../actions/cartActions';
+import PayButton from './PayBtn';
+import { useState } from 'react';
 
 type PropType = {
   total: number;
+  cartIds: CartItemID[];
 };
 
-const CheckOutForm = ({ total }: PropType) => {
+const CheckOutForm = ({ total, cartIds }: PropType) => {
   const {
     register,
     handleSubmit,
@@ -29,39 +33,47 @@ const CheckOutForm = ({ total }: PropType) => {
   });
 
   const { data: session, status } = useSession();
+  const [orderData, setOrderData] = useState<Order>();
   const closedrawer = useDrawerState((state) => state.closeDrawer);
 
   const router = useRouter();
 
-  !session.user && router.push('/');
+  !session?.user && router.push('/');
 
-  const { data: user, isLoading } = useQuery(['user', session.user.email], () =>
-    getUser(session.user.email)
+  const { data: user, isLoading } = useQuery(
+    ['user', session?.user.email],
+    () => getUser(session?.user.email)
   );
 
-  const updateUserData = useMutation((data: Partial<User>) => {
-    return updateUser(session.user.email, data);
-  });
-
   const submit = async (data: TOrderFormSchema) => {
-    try {
-      const res = await updateUserData.mutateAsync(data);
-      if (res) {
-        toast({
-          variant: 'default',
-          title: 'Update Successful',
-          description: 'Your profile has been updated sucessfully',
-        });
-        closedrawer();
-      }
-    } catch (error) {
-      toast({
-        variant: 'destructive',
-        title: 'Uh oh! Something went wrong.',
-      });
-      console.log(error);
-    }
+    setOrderData(() => {
+      return {
+        name: data.name,
+        email: data.email,
+        address: data.address,
+        city: data.city,
+        country: data.country,
+        mobileNo: data.mobileNo,
+        state: data.state,
+        street: data.street,
+        id: null,
+        userEmail: session?.user.email,
+        total: total,
+        status: 'Pending',
+        createdAt: new Date(),
+        updatedAt: new Date(),
+      };
+    });
+    closedrawer();
   };
+
+  const createUserOrder = useMutation(() => {
+    return createOrder({
+      data: orderData,
+      cartItemsId: cartIds,
+      userEmail: session.user.email,
+    });
+  });
 
   return isLoading ? (
     <div className="grid justify-center items-center text-8xl animate-spin">
@@ -78,7 +90,7 @@ const CheckOutForm = ({ total }: PropType) => {
             <Label>Name</Label>
             <Input
               type="text"
-              defaultValue={user.name}
+              defaultValue={user?.name}
               placeholder="Firstname Lastname"
               {...register('name')}
             />
@@ -169,12 +181,17 @@ const CheckOutForm = ({ total }: PropType) => {
               type="submit"
               className="w-full bg-gradient-to-r from-orange-400 to-green_custom"
             >
-              {updateUserData.isLoading ? (
+              {createUserOrder.isLoading ? (
                 <div className="animate-spin">
                   <FaSpinner />
                 </div>
               ) : (
-                <div>click to pay {formatPrice(total)}</div>
+                <PayButton
+                  email={session.user.email}
+                  text={`click to pay ${formatPrice(total)}`}
+                  amount={total * 100}
+                  createFn={createUserOrder.mutateAsync}
+                />
               )}
             </Button>
           </div>

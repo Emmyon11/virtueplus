@@ -38,6 +38,9 @@ const Cart = async ({ email }: { email: string }) => {
     (total, cartItem) => total + cartItem.quantity * cartItem.product.price,
     0
   );
+  const cartItemIds = userCart.cartItems.map((cartItem) => {
+    return { id: cartItem.id };
+  });
 
   const fee = 1;
   const itemCount = userCart.cartItems.reduce(
@@ -70,6 +73,7 @@ const Cart = async ({ email }: { email: string }) => {
                     product={item.product}
                     quantity={item.quantity}
                     key={item.id}
+                    remove={true}
                   />
                 ))}
               </ScrollArea>
@@ -97,7 +101,10 @@ const Cart = async ({ email }: { email: string }) => {
                     className="w-full"
                     buttonText="Continue to checkout"
                   >
-                    <CheckOutForm total={cartTotal + fee} />
+                    <CheckOutForm
+                      total={cartTotal + fee}
+                      cartIds={cartItemIds}
+                    />
                   </CheckOutBtn>
                 </SheetTrigger>
               </SheetFooter>

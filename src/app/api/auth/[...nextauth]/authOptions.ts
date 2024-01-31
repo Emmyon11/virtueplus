@@ -49,7 +49,13 @@ export const authOptions: AuthOptions = {
         delete user.hashedPassword;
         delete user.emailVerified;
 
-        return user;
+        return {
+          name: user.name,
+          role: user.role,
+          email: user.email,
+          id: user.id,
+          image: user.image,
+        };
       },
     }), // ...add more providers here
   ],
@@ -58,23 +64,24 @@ export const authOptions: AuthOptions = {
     maxAge: 30 * 24 * 60 * 60, // 30 days
   },
   callbacks: {
-    jwt: async ({ token, user, profile }) => {
+    jwt: async ({ token, user }) => {
       if (user) {
         token.email = user.email;
         token.name = user.name;
-        token.userImage = user.image;
+        token.picture = user.image;
         token.role = user.role;
       }
 
       return token;
     },
-    session: ({ session, token, user }) => {
+    session: ({ session, token }) => {
       if (token) {
         session.user.email = token.email;
         session.user.name = token.name;
         session.user.image = token.picture;
         session.user.role = token.role;
       }
+
       return session;
     },
   },

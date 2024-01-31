@@ -56,7 +56,7 @@ export const NewsLetter: React.FC<NewsLetterProp> = ({
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className={cn('flex items-start gap-x-4', classnameForm)}
+        className={cn('flex w-full', classnameForm)}
       >
         <FormField
           control={form.control}
@@ -65,9 +65,8 @@ export const NewsLetter: React.FC<NewsLetterProp> = ({
             <FormItem>
               <FormControl>
                 <Input
-                  placeholder="example@email.com"
                   className={cn(
-                    'border-none shadow-md min-w-56 bg-primary-foreground',
+                    'border-none shadow-md  min-w-60 bg-primary-foreground',
                     classnameInput
                   )}
                   {...field}

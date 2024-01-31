@@ -7,12 +7,11 @@ import { Button } from '@/components/ui/button';
 import { FaSpinner } from 'react-icons/fa6';
 
 import { ProductFormSchema, TProductFormSchema } from './ptype';
-import { Product, ProductTypes } from '@prisma/client';
+import { ProductTypes } from '@prisma/client';
 import { addProduct } from '../action';
 import { toast } from '@/components/ui/use-toast';
-import { ChangeEvent, ChangeEventHandler, useState } from 'react';
-import axios from 'axios';
-import { uploadFiles } from '@/utils/uploadthing';
+import { ChangeEvent, useState } from 'react';
+import { uploadDoc, uploadFiles } from '@/utils/uploadthing';
 
 const ProductForm = () => {
   const {
@@ -20,11 +19,12 @@ const ProductForm = () => {
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<TProductFormSchema>({ resolver: zodResolver(ProductFormSchema) });
-  const [selectedImage, setSelectedImage] = useState<File[]>();
+  const [iscourse, setIsCourse] = useState<boolean>(false);
 
   const submit = async (data: TProductFormSchema) => {
     try {
       let image: string = null;
+      let pdfUrl: string = null;
       if (data.image) {
         // Uploading image to s3 bucket
         try {
@@ -32,12 +32,29 @@ const ProductForm = () => {
             files: Array.from(data.image),
           });
           image = res[0].url;
-          console.log('success');
         } catch (error) {
           console.log(error);
         }
       }
-      await addProduct({ ...data, image: image });
+      if (data.pdfFile) {
+        // Uploading image to s3 bucket
+        try {
+          const res = await uploadDoc(data.pdfFile);
+          pdfUrl = res;
+        } catch (error) {
+          console.log(error);
+        }
+      }
+      const price = parseFloat(data.price);
+      await addProduct({
+        name: data.name,
+        description: data.description,
+        manufacturer: data.manufacturer,
+        type: data.type,
+        image: image,
+        fileUrl: pdfUrl,
+        price: price,
+      });
       toast({
         variant: 'default',
         title: `${data.name} added to database sucessfully`,
@@ -49,14 +66,6 @@ const ProductForm = () => {
         description: 'something went wrong',
       });
     }
-  };
-
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const file = Array.from(event.target.files);
-    if (!file) return;
-    setSelectedImage(() => {
-      return file;
-    });
   };
 
   return (
@@ -85,7 +94,11 @@ const ProductForm = () => {
               Price in naira
             </Label>
             <select
-              {...register('type')}
+              {...register('type', {
+                onChange(event: ChangeEvent<HTMLSelectElement>) {
+                  setIsCourse(event.target.value === 'Courses');
+                },
+              })}
               defaultValue={ProductTypes.Goods}
               className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
             >
@@ -108,13 +121,24 @@ const ProductForm = () => {
             <Input
               type="file"
               placeholder="example@png"
-              onChange={handleChange}
               {...register('image')}
             />
             {errors?.image && <p>{errors?.image?.message.toString()}</p>}
           </div>
+          {iscourse ? (
+            <div className="">
+              <Label>Upload course pdf</Label>
+              <Input
+                type="file"
+                placeholder="example@png"
+                {...register('pdfFile')}
+              />
+              {errors?.pdfFile && <p>{errors?.pdfFile?.message.toString()}</p>}
+            </div>
+          ) : null}
+
           <div className="">
-            <Label>Manufacturer</Label>
+            <Label>{iscourse ? 'Author' : 'Manufacturer'}</Label>
             <Input
               type="text"
               placeholder="example ltd"

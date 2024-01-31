@@ -25,29 +25,44 @@ export const getUserCart = async (email: string) => {
   }
 };
 
-interface CartItemID {
+export interface CartItemID {
   id: string;
 }
 
 export const createOrder = async ({
   data,
   cartItemsId,
+  userEmail,
 }: {
   data: Order;
   cartItemsId: CartItemID[];
+  userEmail: string;
 }) => {
+  const { id, ...orderData } = data;
   try {
     const order = await prisma.order.create({
       data: {
-        ...data,
+        ...orderData,
         cartItems: {
           connect: [...cartItemsId],
         },
       },
     });
-
+    const updatedCart = await prisma.cart.update({
+      where: {
+        userEmail,
+      },
+      data: {
+        cartItems: {
+          disconnect: [...cartItemsId],
+        },
+      },
+    });
+    revalidatePath('/', 'layout');
     return order;
-  } catch (error) {}
+  } catch (error) {
+    console.log(error);
+  }
 };
 
 export const getCartItem = async (id: string) => {
