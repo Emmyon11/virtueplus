@@ -3,6 +3,7 @@ import prisma from '@/lib/primaDB';
 import { Product } from '@prisma/client';
 import { TProductFormSchema } from './components/ptype';
 import { revalidatePath } from 'next/cache';
+import { pages } from 'next/dist/build/templates/app-page';
 
 export const getProducts = async () => {
   try {
@@ -32,7 +33,7 @@ export const deleteProduct = async (id: string) => {
     return res;
   } catch (error) {
     console.log(error);
-    throw new Error('Failed to get products');
+    throw new Error('Failed to delete products');
   }
 };
 export const updateProduct = async (id: string, data: Product) => {
@@ -45,7 +46,7 @@ export const updateProduct = async (id: string, data: Product) => {
     return res;
   } catch (error) {
     console.log(error);
-    throw new Error('Failed to get products');
+    throw new Error('Failed to update products');
   }
 };
 export const addProduct = async (data: Partial<Product>) => {
@@ -67,6 +68,6 @@ export const addProduct = async (data: Partial<Product>) => {
     return res;
   } catch (error) {
     console.log(error);
-    throw new Error('Failed to get products');
+    throw new Error('Failed to add products');
   }
 };

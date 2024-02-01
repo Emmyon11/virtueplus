@@ -1,5 +1,7 @@
 import { Product } from '@prisma/client';
 import Image from 'next/image';
+import { FaTrash } from 'react-icons/fa6';
+import DeleteProductBtn from './DeleteProductBtn';
 
 type ProductCardType = {
   product: Product;
@@ -7,7 +9,7 @@ type ProductCardType = {
 const ProductCard = ({ product }: ProductCardType) => {
   return (
     <main>
-      <div className="grid overflow-clip bg-white shadow-md min-h-80">
+      <div className="grid relative overflow-clip bg-white shadow-md min-h-80">
         {/* Image segment */}
         <div className="flex items-center relative overflow-clip h-64 justify-center">
           <Image
@@ -23,6 +25,12 @@ const ProductCard = ({ product }: ProductCardType) => {
           <h1 className=" font-semibold ">{product.name}</h1>
           <h1 className="font-bold">₦{product.price}</h1>
           <h1 className="text-sm text-gray-400">{product.description}</h1>
+        </div>
+        {/* TODO: add delete button to the card */}
+        <div className="absolute z-10 right-10 top-10 text-green_custom">
+          <DeleteProductBtn productId={product.id}>
+            <FaTrash />
+          </DeleteProductBtn>
         </div>
       </div>
     </main>

@@ -10,6 +10,7 @@ import { signIn } from 'next-auth/react';
 import { toast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
 import { revalidatePath } from 'next/cache';
+import { refreshPath } from '../action';
 
 const LoginForm = () => {
   const {
@@ -32,6 +33,7 @@ const LoginForm = () => {
           title: 'Logged in successfully',
           description: 'You can now log in your account',
         });
+        await refreshPath();
         router.push('/');
       } else if (res.error) {
         toast({

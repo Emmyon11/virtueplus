@@ -1,18 +1,16 @@
-'use client';
 import { Product, ProductTypes } from '@prisma/client';
 import Image from 'next/image';
-import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 type ProductCardType = {
   product: Product;
   category: ProductTypes;
 };
 const UserProductCard = ({ product, category }: ProductCardType) => {
-  const router = useRouter();
   return (
     <main>
-      <div
-        onClick={() => router.push(`/${category.toLowerCase()}/${product.id}`)}
+      <Link
+        href={`/${category.toLowerCase()}/${product.id}`}
         className="grid bg-gray-100 overflow-clip shadow-md min-h-80 cursor-pointer"
       >
         {/* Image segment */}
@@ -31,7 +29,7 @@ const UserProductCard = ({ product, category }: ProductCardType) => {
           <h1 className="font-bold">₦{product.price}</h1>
           <h1 className="text-sm text-gray-400">{product.description}</h1>
         </div>
-      </div>
+      </Link>
     </main>
   );
 };

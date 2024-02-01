@@ -14,7 +14,7 @@ export default async function AdminLayout({
 }) {
   const session = await getServerSession(authOptions);
   if (session?.user.role != 'Admin') {
-    redirect('/');
+    // redirect('/');
   }
   return (
     <main className="lg:grid relative lg:grid-cols-5 min-h-svh">
@@ -25,7 +25,7 @@ export default async function AdminLayout({
         <SideBar />
       </div>
 
-      <div className="col-span-4 bg-blue-100">{children}</div>
+      <div className="col-span-4 relative bg-blue-100">{children}</div>
     </main>
   );
 }

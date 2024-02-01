@@ -36,7 +36,8 @@ export const ProductFormSchema = z.object({
     .refine(
       (files) => ACCEPTED_PDF_TYPES.includes(files?.[0]?.type),
       'Only .pdf format is supported for PDF files.'
-    ),
+    )
+    .optional(),
 });
 
 export type TProductFormSchema = z.infer<typeof ProductFormSchema>;

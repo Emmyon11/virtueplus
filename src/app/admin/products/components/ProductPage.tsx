@@ -7,7 +7,7 @@ const ProductPage = ({ products }: { products: Product[] }) => {
   const services = products?.filter((product) => product.type === 'Services');
   return (
     <main className="p-5">
-      {goods.length > 0 && (
+      {goods?.length > 0 && (
         <div className="">
           <h2 className="my-4 text-4xl font-mukta font-bold tracking-wider text-center text-gray-700">
             Goods
@@ -19,7 +19,7 @@ const ProductPage = ({ products }: { products: Product[] }) => {
           </div>
         </div>
       )}
-      {courses.length > 0 && (
+      {courses?.length > 0 && (
         <div className="">
           <h2 className="my-4 text-4xl font-mukta font-bold tracking-wider text-center text-gray-700">
             Courses
@@ -31,7 +31,7 @@ const ProductPage = ({ products }: { products: Product[] }) => {
           </div>
         </div>
       )}
-      {services.length > 0 && (
+      {services?.length > 0 && (
         <div className="">
           <h2 className="my-4 text-4xl font-mukta font-bold tracking-wider text-center text-gray-700">
             Goods

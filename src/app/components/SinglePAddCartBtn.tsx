@@ -11,10 +11,7 @@ import { FaSpinner } from 'react-icons/fa6';
 import { revalidatePath } from 'next/cache';
 
 const addToCartSchema = z.object({
-  quantity: z.preprocess(
-    (a) => parseInt(z.string().parse(a), 10),
-    z.number().gte(1, 'Must be 18 and above')
-  ),
+  quantity: z.string().optional(),
 });
 
 export type TaddTocart = z.infer<typeof addToCartSchema>;
@@ -28,11 +25,13 @@ const SinglePAddCartBtn = ({ product }: { product: Product }) => {
   const session = useSession();
 
   const submit = async (data: TaddTocart) => {
+    console.log(data);
     if (!session?.data?.user) return; // not logged in
     try {
+      console.log('add to cart');
       const res = await addToCart({
         productId: product.id,
-        quantity: data.quantity,
+        quantity: data.quantity ? parseInt(data.quantity) : 1,
         userEmail: session?.data?.user.email,
       });
       if (res?.id) {
@@ -54,13 +53,25 @@ const SinglePAddCartBtn = ({ product }: { product: Product }) => {
   return (
     <main>
       <form onSubmit={handleSubmit(submit)}>
-        <div className="">
-          <input
-            {...register('quantity')}
-            className="w-16 ring-green_custom  focus:outline-none h-10 p-2 ring-2"
-          />
+        <div className=" flex gap-2">
+          {product.quantity > 1 ? (
+            <div className="">
+              <input
+                {...register('quantity')}
+                className="w-16 ring-green_custom  focus:outline-none h-10 p-2 ring-2"
+                defaultValue={1}
+              />{' '}
+              {errors?.quantity && (
+                <p className="text-sm text-red-500">
+                  {errors.quantity.message}
+                </p>
+              )}
+            </div>
+          ) : null}
+
           <button
-            className="bg-slate-800 h-11 ml-4 px-8 text-white p-2"
+            className="bg-slate-800 h-11 px-8 text-white p-2"
+            disabled={product.quantity === 0}
             type="submit"
           >
             {isSubmitting ? (
