@@ -21,16 +21,16 @@ const Orders = async () => {
                     <div className="">{formatDate(order.createdAt)}</div>
                     <div className="">{order.status}</div>
                   </div>
-                  {order.cartItems.map((item, index) => {
+                  {order.orderItems.map((item, index) => {
                     return (
                       <div key={item.id} className="">
                         <OrderItem
                           itemId={item.id}
-                          product={item.product}
+                          product={item}
                           quantity={item.quantity}
                         />
 
-                        {index !== order.cartItems.length - 1 ? (
+                        {index !== order.orderItems.length - 1 ? (
                           <Separator key={item.id} />
                         ) : (
                           ''

@@ -15,15 +15,16 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="h-screen">
-      <h2>Something went wrong!</h2>
+    <div className="flex font-nunito flex-col items-center justify-center h-screen">
+      <h1 className="text-4xl font-bold text-red-500 mb-4">Oops!</h1>
+      <p className="text-lg text-gray-600 mb-4">
+        Something went wrong. Please try again later.
+      </p>
       <button
-        onClick={
-          // Attempt to recover by trying to re-render the segment
-          () => reset()
-        }
+        className="bg-primary text-secondary px-4 py-2 rounded-md transition duration-300 hover:bg-red-500 "
+        onClick={() => window.location.reload()}
       >
-        Try again
+        Refresh Page
       </button>
     </div>
   );

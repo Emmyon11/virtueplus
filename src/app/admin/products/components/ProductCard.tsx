@@ -9,7 +9,7 @@ type ProductCardType = {
 const ProductCard = ({ product }: ProductCardType) => {
   return (
     <main>
-      <div className="grid relative overflow-clip bg-white shadow-md min-h-80">
+      <div className="grid relative overflow-clip bg-secondary shadow-md min-h-80">
         {/* Image segment */}
         <div className="flex items-center relative overflow-clip h-64 justify-center">
           <Image

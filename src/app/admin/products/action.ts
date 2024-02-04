@@ -64,7 +64,7 @@ export const addProduct = async (data: Partial<Product>) => {
         // description: data.description,
       },
     });
-    revalidatePath('/', 'page');
+    revalidatePath('/admin/products', 'page');
     return res;
   } catch (error) {
     console.log(error);

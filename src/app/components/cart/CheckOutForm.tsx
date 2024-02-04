@@ -10,20 +10,22 @@ import { useRouter } from 'next/navigation';
 import { useSession } from 'next-auth/react';
 import { useMutation, useQuery } from 'react-query';
 import { getUser, updateUser } from '@/app/admin/users/action';
-import { Order, User } from '@prisma/client';
+import { Order, OrderItem, User } from '@prisma/client';
 import { useDrawerState } from '@/utils/store';
 import { OrderFormSchema, TOrderFormSchema } from './orderZSchema.';
 import { formatPrice } from '@/lib/utils';
 import { CartItemID, createOrder } from '../actions/cartActions';
 import PayButton from './PayBtn';
 import { useState } from 'react';
+import { OrderItemType } from '../../../../next-auth';
 
 type PropType = {
   total: number;
-  cartIds: CartItemID[];
+  cartIds: string[];
+  orderItems: OrderItemType[];
 };
 
-const CheckOutForm = ({ total, cartIds }: PropType) => {
+const CheckOutForm = ({ orderItems, total, cartIds }: PropType) => {
   const {
     register,
     handleSubmit,
@@ -70,6 +72,7 @@ const CheckOutForm = ({ total, cartIds }: PropType) => {
   const createUserOrder = useMutation(() => {
     return createOrder({
       data: orderData,
+      orderItems,
       cartItemsId: cartIds,
       userEmail: session.user.email,
     });

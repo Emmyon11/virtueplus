@@ -14,9 +14,10 @@ import { ScrollArea } from '@/components/ui/scroll-area';
 import { FaShoppingCart } from 'react-icons/fa';
 import CartItem from './CartItem';
 import { getUserCart } from '../actions/cartActions';
-import EditButton from '@/app/user/components/EditButton';
 import CheckOutBtn from './CheckOutBtn';
 import CheckOutForm from './CheckOutForm';
+import { OrderItem } from '@prisma/client';
+import { OrderItemType } from '../../../../next-auth';
 
 const Cart = async ({ email }: { email: string }) => {
   const userCart = await getUserCart(email);
@@ -39,7 +40,18 @@ const Cart = async ({ email }: { email: string }) => {
     0
   );
   const cartItemIds = userCart.cartItems.map((cartItem) => {
-    return { id: cartItem.id };
+    return cartItem.id;
+  });
+  const orderItems: OrderItemType[] = userCart.cartItems.map((cartItem) => {
+    return {
+      quantity: cartItem.quantity,
+      price: cartItem.product.price,
+      productId: cartItem.productId,
+      productImg: cartItem.product.image,
+      productTitle: cartItem.product.name,
+      pdfUrl: cartItem.product.fileUrl,
+      productType: cartItem.product.type,
+    };
   });
 
   const fee = 1;
@@ -104,6 +116,7 @@ const Cart = async ({ email }: { email: string }) => {
                     <CheckOutForm
                       total={cartTotal + fee}
                       cartIds={cartItemIds}
+                      orderItems={orderItems}
                     />
                   </CheckOutBtn>
                 </SheetTrigger>

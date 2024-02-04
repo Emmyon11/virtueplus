@@ -1,6 +1,6 @@
 'use client';
 import { formatPrice } from '@/lib/utils';
-import { Product, ProductTypes } from '@prisma/client';
+import { OrderItem as Item, Product, ProductTypes } from '@prisma/client';
 import Image from 'next/image';
 import { FaImage } from 'react-icons/fa';
 import { FaDownload, FaX } from 'react-icons/fa6';
@@ -12,11 +12,11 @@ const OrderItem = ({
   quantity,
   itemId,
 }: {
-  product: Product;
+  product: Item;
   quantity: number;
   itemId: string;
 }) => {
-  const image = product.image;
+  const image = product.productImg;
   return (
     <div className="space-y-3 py-2 cursor-pointer">
       <div className="flex items-start justify-between gap-4">
@@ -25,7 +25,7 @@ const OrderItem = ({
             {image ? (
               <Image
                 src={image}
-                alt={product.name}
+                alt={product.productTitle}
                 fill
                 className="absolute object-cover"
               />
@@ -41,15 +41,18 @@ const OrderItem = ({
 
           <div className="flex flex-col self-start">
             <span className="line-clamp-1 text-sm font-medium mb-1">
-              {product.name}
+              {product.productTitle}
             </span>
 
             <span className="line-clamp-1 text-xs capitalize text-muted-foreground">
-              {product.type}
+              {product.productType}
             </span>
-            {product.type == ProductTypes.Courses ? (
+            {product.productType == ProductTypes.Courses ? (
               <div className="">
-                <DownloadBtn fileName={product.name} pdfUrl={product.fileUrl}>
+                <DownloadBtn
+                  fileName={product.productTitle}
+                  pdfUrl={product.pdfUrl}
+                >
                   <FaDownload className="text-xl text-green_custom" />
                 </DownloadBtn>
               </div>

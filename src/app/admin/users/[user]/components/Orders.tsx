@@ -1,8 +1,8 @@
 import { getUserOrders } from '@/app/admin/users/action';
 import CartItem from '@/app/components/cart/CartItem';
+import OrderItem from '@/app/user/components/OrderItem';
 import { Separator } from '@/components/ui/separator';
 import { formatDate, formatPrice } from '@/lib/utils';
-import { getServerSession } from 'next-auth';
 import Image from 'next/image';
 
 const Orders = async ({ userEmail }: { userEmail: string }) => {
@@ -13,23 +13,24 @@ const Orders = async ({ userEmail }: { userEmail: string }) => {
         <div className="">
           {userOrder.map((order) => {
             return (
-              <div className="p-4 m-4 rounded-md shadow-sm bg-primary-foreground">
+              <div
+                key={order.id}
+                className="p-4 m-4 rounded-md shadow-sm bg-primary-foreground"
+              >
                 <div key={order.id} className="">
                   <div className="flex justify-between text-xs font-nunito text-gray-300 font-semibold">
                     <div className="">{formatDate(order.createdAt)}</div>
                     <div className="">{order.status}</div>
                   </div>
-                  {order.cartItems.map((item, index) => {
+                  {order.orderItems.map((item, index) => {
                     return (
                       <div key={item.id} className="">
-                        <CartItem
+                        <OrderItem
                           itemId={item.id}
-                          product={item.product}
+                          product={item}
                           quantity={item.quantity}
-                          key={item.id}
-                          remove={false}
                         />
-                        {index !== order.cartItems.length - 1 ? (
+                        {index !== order.orderItems.length - 1 ? (
                           <Separator key={item.id} />
                         ) : (
                           ''

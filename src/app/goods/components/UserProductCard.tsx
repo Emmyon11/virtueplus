@@ -8,10 +8,10 @@ type ProductCardType = {
 };
 const UserProductCard = ({ product, category }: ProductCardType) => {
   return (
-    <main>
+    <main className="animate-fade-in delay-100">
       <Link
         href={`/${category.toLowerCase()}/${product.id}`}
-        className="grid bg-gray-100 overflow-clip shadow-md min-h-80 cursor-pointer"
+        className="grid bg-secondary overflow-clip shadow-md min-h-80 cursor-pointer"
       >
         {/* Image segment */}
         <div className="flex items-center relative overflow-clip h-64 justify-center">
@@ -23,7 +23,7 @@ const UserProductCard = ({ product, category }: ProductCardType) => {
           />
         </div>
         {/* Info segment */}
-        <div className="p-5 font-mukta uppercase">
+        <div className="p-5 transi font-mukta uppercase">
           <h1 className="font-light text-gray-400">{product.type}</h1>
           <h1 className=" font-semibold ">{product.name}</h1>
           <h1 className="font-bold">₦{product.price}</h1>

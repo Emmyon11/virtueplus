@@ -1,8 +1,9 @@
 'use server';
 import prisma from '@/lib/primaDB';
 import { uploadFiles } from '@/utils/uploadthing';
-import { CartItem, Order, Product } from '@prisma/client';
+import { CartItem, Order, OrderItem, Product } from '@prisma/client';
 import { revalidatePath } from 'next/cache';
+import { OrderItemType } from '../../../../next-auth';
 
 export const getUserCart = async (email: string) => {
   try {
@@ -32,10 +33,12 @@ export interface CartItemID {
 export const createOrder = async ({
   data,
   cartItemsId,
+  orderItems,
   userEmail,
 }: {
   data: Order;
-  cartItemsId: CartItemID[];
+  cartItemsId: string[];
+  orderItems: OrderItemType[];
   userEmail: string;
 }) => {
   const { id, ...orderData } = data;
@@ -43,18 +46,13 @@ export const createOrder = async ({
     const order = await prisma.order.create({
       data: {
         ...orderData,
-        cartItems: {
-          connect: [...cartItemsId],
-        },
+        orderItems: { create: [...orderItems] },
       },
     });
-    const updatedCart = await prisma.cart.update({
+    const updatedCart = await prisma.cartItem.deleteMany({
       where: {
-        userEmail,
-      },
-      data: {
-        cartItems: {
-          disconnect: [...cartItemsId],
+        id: {
+          in: cartItemsId,
         },
       },
     });

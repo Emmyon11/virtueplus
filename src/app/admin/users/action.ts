@@ -35,11 +35,7 @@ export const getUserOrders = async (email: string) => {
     const res = await prisma.order.findMany({
       where: { userEmail: email },
       include: {
-        cartItems: {
-          include: {
-            product: true,
-          },
-        },
+        orderItems: true,
       },
     });
 

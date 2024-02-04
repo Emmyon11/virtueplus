@@ -1,10 +1,18 @@
 import { Product } from '@prisma/client';
 import ProductCard from './ProductCard';
+import NotFoundDb from '@/components/personal/NotFoundDb';
 
 const ProductPage = ({ products }: { products: Product[] }) => {
   const goods = products?.filter((product) => product.type === 'Goods');
   const courses = products?.filter((product) => product.type === 'Courses');
   const services = products?.filter((product) => product.type === 'Services');
+  if (products?.length <= 0) {
+    return (
+      <div className="relative min-h-screen">
+        <NotFoundDb message="No product found" />
+      </div>
+    );
+  }
   return (
     <main className="p-5">
       {goods?.length > 0 && (

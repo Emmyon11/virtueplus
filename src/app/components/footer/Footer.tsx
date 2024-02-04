@@ -1,5 +1,5 @@
 import Link from 'next/link';
-import { links } from '../navbar/NavItems';
+
 import {
   FaAngleDoubleRight,
   FaFacebook,
@@ -14,10 +14,18 @@ import {
 } from 'react-icons/fa6';
 import { NewsLetter } from '@/app/components/NewsLetter';
 
+const links = [
+  { name: 'Home', link: '/' },
+  { name: 'goods', link: '/goods' },
+  { name: 'services', link: '/services' },
+  { name: 'courses', link: '/courses' },
+  { name: 'faq', link: '/faq' },
+  { name: 'about', link: '/about' },
+];
 const Footer = () => {
   return (
     <main>
-      <div className="bg-black text-secondary relative h-full font-mukta p-4 grid md:grid-cols-2 lg:grid-cols-3 gap-6 py-7">
+      <div className="bg-black text-white relative h-full font-mukta p-4 grid md:grid-cols-2 lg:grid-cols-3 gap-6 py-7">
         <div className="tracking-widest uppercase text-3xl font-semibold">
           Virtueplus<span className="text-xl text-green_custom">2</span>
         </div>

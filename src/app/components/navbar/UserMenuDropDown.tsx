@@ -14,6 +14,7 @@ import { ReactElement } from 'react';
 import { FaCartPlus } from 'react-icons/fa6';
 import Cart from '../cart/Cart';
 import SignOutBtn from '../SignOutBtn';
+import { ThemeToggle } from '../ThemeToggle';
 
 type UserMenuDropDownProp = {
   children: ReactElement;
@@ -33,11 +34,16 @@ const UserMenuDropDown = ({
       <DropdownMenu>
         <DropdownMenuTrigger>{children}</DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel>{name}</DropdownMenuLabel>
+          <DropdownMenuLabel className="flex">
+            <div className="">{name}</div>
+            <div className="">
+              <ThemeToggle />
+            </div>
+          </DropdownMenuLabel>
           <DropdownMenuSeparator />
           <div className="">
             <DropdownMenuItem></DropdownMenuItem>
-            {role == 'User' ? (
+            {role === 'Admin' ? (
               <DropdownMenuItem>
                 <Link href="/admin">Admin</Link>
               </DropdownMenuItem>

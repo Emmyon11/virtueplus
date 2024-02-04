@@ -4,7 +4,7 @@ import { FaBullseye } from 'react-icons/fa6';
 
 const Mission = () => {
   return (
-    <main>
+    <main className="animate-fade-in">
       <div className="font-nunito grid md:grid-cols-2 md:p-4">
         <div className="relative">
           <Image
@@ -20,10 +20,10 @@ const Mission = () => {
               <FaBullseye className="text-4xl lg:text-6xl text-green_custom" />
             </div>
             <div className="">
-              <div className="text-2xl lg:text-4xl font-bold text-slate-700">
+              <div className="text-2xl lg:text-4xl font-bold text-primary/70">
                 Our Mission
               </div>
-              <div className="lg:text-xl lg:mt-2 text-gray-500">
+              <div className="lg:text-xl lg:mt-2 text-primary/55">
                 <p>
                   Our mission is &quotTo add value to the Microenterprise
                   industry by providing technical assistance in areas where
@@ -40,10 +40,10 @@ const Mission = () => {
               <FaEye className="text-4xl lg:text-6xl text-green_custom" />
             </div>
             <div className="">
-              <div className="text-2xl lg:text-4xl font-bold text-slate-700">
+              <div className="text-2xl lg:text-4xl font-bold text-primary/70">
                 <h1>Our Vision</h1>
               </div>
-              <div className="lg:text-xl lg:mt-2 text-gray-500">
+              <div className="lg:text-xl lg:mt-2 text-primary/55">
                 <p>
                   {' '}
                   Our vision is &quot To be a global financial service

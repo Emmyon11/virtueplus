@@ -6,7 +6,7 @@ import Items from './Items';
 const HomePage = () => {
   return (
     <main>
-      <div className="relative h-72 lg:grid lg:min-h-screen bg-gray-300 p-6 lg:grid-cols-3 lg:px-14">
+      <div className="relative h-72 lg:grid animate-inbound lg:min-h-screen bg-gray-300 p-6 lg:grid-cols-3 lg:px-14">
         {/* first section for text */}
         <div className="p-10 flex flex-col w-full justify-center gap-6 absolute top-0 bottom-0 z-20 backdrop-filter backdrop-blur-sm lg:static">
           {/* Text */}
@@ -22,9 +22,9 @@ const HomePage = () => {
           {/* Form */}
           <div className="mt-2 w-full">
             <NewsLetter
-              classnameButton="rounded-none tracking-widest w-40 uppercase font-normal text-lg h-16"
-              classnameInput="rounded-none shadow-none h-16"
-              classnameForm="gap-0 border w-96  border-primary"
+              classnameButton="rounded-none border border-secondary border-l-0 tracking-widest w-40 uppercase font-normal hover:bg-secondary hover:text-primary  text-lg h-10"
+              classnameInput="rounded-none text-secondary shadow-none h-10 focus:outline-none focus-ring-0 focus:border-secondary"
+              classnameForm="gap-0 w-96 "
             />
           </div>
         </div>
