@@ -10,7 +10,7 @@ const AdminOrdersPage = async () => {
 
   return (
     <div className="min-h-screen bg-white overflow-clip p-6">
-      {orders?.length > 0 ? (
+      {orders && orders?.length > 0 ? (
         <div className="">
           {orders.map((order) => {
             return (
@@ -20,7 +20,7 @@ const AdminOrdersPage = async () => {
               >
                 <div key={order.id} className="">
                   <div className="flex justify-between text-xs font-nunito text-gray-300 font-semibold">
-                    <div className="">{formatDate(order.createdAt)}</div>
+                    <div className="">{formatDate(order?.createdAt!)}</div>
                     <div className="">{order.status}</div>
                   </div>
                   <div className="">

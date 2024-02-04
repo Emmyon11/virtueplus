@@ -22,24 +22,26 @@ const navbar = async () => {
       {session ? (
         <div className="grid grid-cols-2 lg:order-3 gap-5">
           <UserMenuDropDown
-            role={session.user.role}
-            email={session.user.email}
-            name={session.user.name}
+            role={session?.user?.role!}
+            email={session?.user?.email!}
+            name={session?.user?.name!}
           >
             <Avatar>
               <AvatarImage src="" />
-              <AvatarFallback>{getInitials(session.user.name)}</AvatarFallback>
+              <AvatarFallback>
+                {getInitials(session?.user?.name!)}
+              </AvatarFallback>
             </Avatar>
           </UserMenuDropDown>
 
-          <Cart email={session.user.email} />
+          <Cart email={session?.user?.email!} />
         </div>
       ) : (
         <AuthButton className="lg:order-3 hidden  lg:flex" />
       )}
       <div className="lg:order-2">
         <NavItems className1="" className2="">
-          {session.user ? '' : <AuthButton className="" />}
+          {session?.user ? '' : <AuthButton className="" />}
         </NavItems>
       </div>
     </main>

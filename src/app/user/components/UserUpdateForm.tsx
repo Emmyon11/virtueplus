@@ -29,14 +29,15 @@ const UserUpdateForm = () => {
 
   const router = useRouter();
 
-  !session.user && router.push('/');
+  !session?.user && router.push('/');
 
-  const { data: user, isLoading } = useQuery(['user', session.user.email], () =>
-    getUser(session.user.email)
+  const { data: user, isLoading } = useQuery(
+    ['user', session?.user?.email],
+    () => getUser(session?.user?.email!)
   );
 
   const updateUserData = useMutation((data: Partial<User>) => {
-    return updateUser(session.user.email, data);
+    return updateUser(session?.user?.email!, data);
   });
 
   if (user) {
@@ -78,7 +79,7 @@ const UserUpdateForm = () => {
             <Label>Name</Label>
             <Input
               type="text"
-              defaultValue={user.name}
+              defaultValue={user?.name!}
               placeholder="Firstname Lastname"
               {...register('name')}
             />
@@ -90,7 +91,7 @@ const UserUpdateForm = () => {
             <Label>Email</Label>
             <Input
               type="email"
-              defaultValue={user.email}
+              defaultValue={user?.email}
               placeholder="example@email.com"
               {...register('email')}
             />
@@ -102,7 +103,7 @@ const UserUpdateForm = () => {
             <Label>Phone Number</Label>
             <Input
               type="tel"
-              defaultValue={user.mobileNo}
+              defaultValue={user?.mobileNo!}
               placeholder="0800001112222"
               {...register('mobileNo')}
             />
@@ -114,7 +115,7 @@ const UserUpdateForm = () => {
             <Label>House number or landmark</Label>
             <Input
               type="text"
-              defaultValue={user.address}
+              defaultValue={user?.address!}
               placeholder="No 1 street name"
               {...register('address')}
             />
@@ -127,7 +128,7 @@ const UserUpdateForm = () => {
               <Label>Street</Label>
               <Input
                 type="text"
-                defaultValue={user.street}
+                defaultValue={user?.street!}
                 placeholder="Gimbiya"
                 {...register('street')}
               />
@@ -137,7 +138,7 @@ const UserUpdateForm = () => {
               <Label>City</Label>
               <Input
                 type="text"
-                defaultValue={user.city}
+                defaultValue={user?.city!}
                 placeholder="Garki"
                 {...register('city')}
               />
@@ -148,7 +149,7 @@ const UserUpdateForm = () => {
               <Label>State</Label>
               <Input
                 type="text"
-                defaultValue={user.state}
+                defaultValue={user?.state!}
                 placeholder="Abuja"
                 {...register('state')}
               />
@@ -158,7 +159,7 @@ const UserUpdateForm = () => {
               <Input
                 type="text"
                 placeholder="Nigeria"
-                defaultValue={user.country}
+                defaultValue={user?.country!}
                 {...register('country')}
               />
             </div>

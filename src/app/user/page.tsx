@@ -26,7 +26,7 @@ const User = async () => {
           <div className="flex -mx-4 flex-wrap">
             <div className="relative w-full min-h-1 px-4 ">
               <h1 className="font-nunito font-bold text-white text-8xl">
-                Welcome {session.user.name}
+                Welcome {session?.user?.name}
               </h1>
             </div>
           </div>

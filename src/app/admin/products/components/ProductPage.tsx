@@ -2,11 +2,11 @@ import { Product } from '@prisma/client';
 import ProductCard from './ProductCard';
 import NotFoundDb from '@/components/personal/NotFoundDb';
 
-const ProductPage = ({ products }: { products: Product[] }) => {
-  const goods = products?.filter((product) => product.type === 'Goods');
-  const courses = products?.filter((product) => product.type === 'Courses');
-  const services = products?.filter((product) => product.type === 'Services');
-  if (products?.length <= 0) {
+const ProductPage = ({ products }: { products?: Product[] }) => {
+  const goods = products?.filter((product) => product?.type === 'Goods');
+  const courses = products?.filter((product) => product?.type === 'Courses');
+  const services = products?.filter((product) => product?.type === 'Services');
+  if (!products || products?.length <= 0) {
     return (
       <div className="relative min-h-screen">
         <NotFoundDb message="No product found" />
@@ -15,7 +15,7 @@ const ProductPage = ({ products }: { products: Product[] }) => {
   }
   return (
     <main className="p-5">
-      {goods?.length > 0 && (
+      {goods && goods?.length > 0 && (
         <div className="">
           <h2 className="my-4 text-4xl font-mukta font-bold tracking-wider text-center text-gray-700">
             Goods
@@ -27,7 +27,7 @@ const ProductPage = ({ products }: { products: Product[] }) => {
           </div>
         </div>
       )}
-      {courses?.length > 0 && (
+      {courses && courses?.length > 0 && (
         <div className="">
           <h2 className="my-4 text-4xl font-mukta font-bold tracking-wider text-center text-gray-700">
             Courses
@@ -39,7 +39,7 @@ const ProductPage = ({ products }: { products: Product[] }) => {
           </div>
         </div>
       )}
-      {services?.length > 0 && (
+      {services && services?.length > 0 && (
         <div className="">
           <h2 className="my-4 text-4xl font-mukta font-bold tracking-wider text-center text-gray-700">
             Goods

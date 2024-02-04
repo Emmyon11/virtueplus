@@ -51,7 +51,7 @@ const OrderItem = ({
               <div className="">
                 <DownloadBtn
                   fileName={product.productTitle}
-                  pdfUrl={product.pdfUrl}
+                  pdfUrl={product?.pdfUrl!}
                 >
                   <FaDownload className="text-xl text-green_custom" />
                 </DownloadBtn>

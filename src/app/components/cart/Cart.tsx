@@ -36,7 +36,7 @@ const Cart = async ({ email }: { email: string }) => {
     );
   }
   const cartTotal = userCart.cartItems.reduce(
-    (total, cartItem) => total + cartItem.quantity * cartItem.product.price,
+    (total, cartItem) => total + cartItem.quantity * cartItem?.product?.price!,
     0
   );
   const cartItemIds = userCart.cartItems.map((cartItem) => {

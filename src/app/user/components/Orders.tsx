@@ -9,7 +9,7 @@ import OrderItem from './OrderItem';
 const Orders = async () => {
   const session = await getServerSession();
   const user = session?.user;
-  const userOrder = await getUserOrders(user?.email);
+  const userOrder = await getUserOrders(user?.email!);
   return (
     <div className="basis-2/3 relative order-2 lg:order-1 min-h-96 bg-white overflow-clip lg:rounded-md lg:shadow-md lg:mb-10">
       {userOrder?.length > 0 ? (
@@ -22,7 +22,7 @@ const Orders = async () => {
               >
                 <div key={order.id} className="">
                   <div className="flex justify-between text-xs font-nunito text-gray-300 font-semibold">
-                    <div className="">{formatDate(order.createdAt)}</div>
+                    <div className="">{formatDate(order?.createdAt!)}</div>
                     <div className="">{order.status}</div>
                   </div>
                   {order.orderItems.map((item, index) => {

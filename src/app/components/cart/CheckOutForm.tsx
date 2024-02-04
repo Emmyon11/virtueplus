@@ -43,8 +43,8 @@ const CheckOutForm = ({ orderItems, total, cartIds }: PropType) => {
   !session?.user && router.push('/');
 
   const { data: user, isLoading } = useQuery(
-    ['user', session?.user.email],
-    () => getUser(session?.user.email)
+    ['user', session?.user?.email],
+    () => getUser(session?.user?.email!)
   );
 
   const submit = async (data: TOrderFormSchema) => {
@@ -59,7 +59,7 @@ const CheckOutForm = ({ orderItems, total, cartIds }: PropType) => {
         state: data.state,
         street: data.street,
         id: null,
-        userEmail: session?.user.email,
+        userEmail: session?.user?.email,
         total: total,
         status: 'Pending',
         createdAt: new Date(),
@@ -74,7 +74,7 @@ const CheckOutForm = ({ orderItems, total, cartIds }: PropType) => {
       data: orderData,
       orderItems,
       cartItemsId: cartIds,
-      userEmail: session.user.email,
+      userEmail: session?.user?.email!,
     });
   });
 
@@ -93,7 +93,7 @@ const CheckOutForm = ({ orderItems, total, cartIds }: PropType) => {
             <Label>Name</Label>
             <Input
               type="text"
-              defaultValue={user?.name}
+              defaultValue={user?.name!}
               placeholder="Firstname Lastname"
               {...register('name')}
             />
@@ -105,7 +105,7 @@ const CheckOutForm = ({ orderItems, total, cartIds }: PropType) => {
             <Label>Email</Label>
             <Input
               type="email"
-              defaultValue={user.email}
+              defaultValue={user?.email}
               placeholder="example@email.com"
               {...register('email')}
             />
@@ -117,7 +117,7 @@ const CheckOutForm = ({ orderItems, total, cartIds }: PropType) => {
             <Label>Phone Number</Label>
             <Input
               type="tel"
-              defaultValue={user.mobileNo}
+              defaultValue={user?.mobileNo!}
               placeholder="0800001112222"
               {...register('mobileNo')}
             />
@@ -129,7 +129,7 @@ const CheckOutForm = ({ orderItems, total, cartIds }: PropType) => {
             <Label>House number or landmark</Label>
             <Input
               type="text"
-              defaultValue={user.address}
+              defaultValue={user?.address!}
               placeholder="No 1 street name"
               {...register('address')}
             />
@@ -142,7 +142,7 @@ const CheckOutForm = ({ orderItems, total, cartIds }: PropType) => {
               <Label>Street</Label>
               <Input
                 type="text"
-                defaultValue={user.street}
+                defaultValue={user?.street!}
                 placeholder="Gimbiya"
                 {...register('street')}
               />
@@ -152,7 +152,7 @@ const CheckOutForm = ({ orderItems, total, cartIds }: PropType) => {
               <Label>City</Label>
               <Input
                 type="text"
-                defaultValue={user.city}
+                defaultValue={user?.city!}
                 placeholder="Garki"
                 {...register('city')}
               />
@@ -163,7 +163,7 @@ const CheckOutForm = ({ orderItems, total, cartIds }: PropType) => {
               <Label>State</Label>
               <Input
                 type="text"
-                defaultValue={user.state}
+                defaultValue={user?.state!}
                 placeholder="Abuja"
                 {...register('state')}
               />
@@ -173,7 +173,7 @@ const CheckOutForm = ({ orderItems, total, cartIds }: PropType) => {
               <Input
                 type="text"
                 placeholder="Nigeria"
-                defaultValue={user.country}
+                defaultValue={user?.country!}
                 {...register('country')}
               />
             </div>
@@ -190,7 +190,7 @@ const CheckOutForm = ({ orderItems, total, cartIds }: PropType) => {
                 </div>
               ) : (
                 <PayButton
-                  email={session.user.email}
+                  email={session?.user?.email!}
                   text={`click to pay ${formatPrice(total)}`}
                   amount={total * 100}
                   createFn={createUserOrder.mutateAsync}

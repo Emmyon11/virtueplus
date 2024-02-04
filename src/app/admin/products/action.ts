@@ -54,8 +54,8 @@ export const addProduct = async (data: Partial<Product>) => {
     const res = await prisma.product.create({
       data: {
         ...data,
-        name: data.name,
-        type: data.type,
+        name: data.name!,
+        type: data.type!,
         // name: data.name,
         // type: data.type,
         // price: parseFloat(data.price),

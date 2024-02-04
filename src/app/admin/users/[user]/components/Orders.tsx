@@ -19,7 +19,7 @@ const Orders = async ({ userEmail }: { userEmail: string }) => {
               >
                 <div key={order.id} className="">
                   <div className="flex justify-between text-xs font-nunito text-gray-300 font-semibold">
-                    <div className="">{formatDate(order.createdAt)}</div>
+                    <div className="">{formatDate(order?.createdAt!)}</div>
                     <div className="">{order.status}</div>
                   </div>
                   {order.orderItems.map((item, index) => {

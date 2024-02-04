@@ -18,7 +18,7 @@ const AOrderItem = ({ user, order }: { user: User; order: Order }) => {
             {image ? (
               <Image
                 src={image}
-                alt={user.name}
+                alt={user.name!}
                 fill
                 className="absolute object-cover"
               />
@@ -38,7 +38,7 @@ const AOrderItem = ({ user, order }: { user: User; order: Order }) => {
             </span>
 
             <span className="line-clamp-1 text-xs capitalize text-muted-foreground">
-              {formatDate(order.createdAt)}
+              {formatDate(order?.createdAt!)}
             </span>
           </div>
         </div>

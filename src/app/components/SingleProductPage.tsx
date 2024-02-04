@@ -18,7 +18,7 @@ const SingleProductPage = ({ product }: { product: Product }) => {
         {/* Product pictures */}
         <div className="relative min-h-96 rounded-sm overflow-clip">
           <Image
-            src={product.image}
+            src={product?.image!}
             alt={`${product.name} image`}
             fill
             className="object-cover"
@@ -41,7 +41,7 @@ const SingleProductPage = ({ product }: { product: Product }) => {
             </div>
 
             <div className="font-bold text-primary/90 text-4xl">
-              {formatPrice(product.price)}
+              {formatPrice(product?.price!)}
             </div>
             <div className="text-primary/50 text-sm ">
               {product.description}
