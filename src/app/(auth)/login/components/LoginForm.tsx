@@ -27,7 +27,7 @@ const LoginForm = () => {
         password,
         redirect: false,
       });
-      if (res.ok) {
+      if (res?.ok) {
         toast({
           variant: 'default',
           title: 'Logged in successfully',
@@ -35,11 +35,11 @@ const LoginForm = () => {
         });
         await refreshPath();
         router.push('/');
-      } else if (res.error) {
+      } else if (res?.error) {
         toast({
           variant: 'destructive',
           title: 'Uh oh! Something went wrong',
-          description: res.error,
+          description: res?.error,
         });
       }
     } catch (error) {
