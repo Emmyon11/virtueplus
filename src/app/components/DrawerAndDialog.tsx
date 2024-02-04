@@ -61,7 +61,7 @@ export function DrawerAndDialog({
               </p>
             </DialogDescription>
           </DialogHeader>
-          {children}
+          <div className="">{children}</div>
         </DialogContent>
       </Dialog>
     );
@@ -77,7 +77,6 @@ export function DrawerAndDialog({
       <DrawerContent className="px-6">
         <DrawerHeader className="text-left">
           <DrawerTitle>
-            {' '}
             <h1>Edit</h1>
           </DrawerTitle>
           <DrawerDescription>
@@ -86,11 +85,12 @@ export function DrawerAndDialog({
             </p>
           </DrawerDescription>
         </DrawerHeader>
-        {children}
+        <div className="">{children}</div>
+
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button variant="outline">
-              <h1></h1>Cancel
+              <h1>Cancel</h1>
             </Button>
           </DrawerClose>
         </DrawerFooter>
