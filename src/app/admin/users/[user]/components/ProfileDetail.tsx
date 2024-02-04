@@ -29,7 +29,7 @@ const ProfileDetail = async ({ email }: { email: string }) => {
       </div>
       <div className="grid gap-6">
         <div className="text-center">
-          <h3 className="text-lg text-slate-700">{user.name}</h3>
+          <h3 className="text-lg text-slate-700">{user?.name}</h3>
           <hr className="my-4" />
           <p>
             Ryan — the name taken by Melbourne-raised, Brooklyn-based Nick
