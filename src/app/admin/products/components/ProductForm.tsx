@@ -23,8 +23,8 @@ const ProductForm = () => {
 
   const submit = async (data: TProductFormSchema) => {
     try {
-      let image: string = null;
-      let pdfUrl: string = null;
+      let image: string | null = null;
+      let pdfUrl: string | null = null;
       if (data.image) {
         // Uploading image to s3 bucket
         try {
@@ -40,7 +40,7 @@ const ProductForm = () => {
         // Uploading image to s3 bucket
         try {
           const res = await uploadDoc(data.pdfFile);
-          pdfUrl = res;
+          pdfUrl = res!;
         } catch (error) {
           console.log(error);
         }
@@ -123,7 +123,7 @@ const ProductForm = () => {
               placeholder="example@png"
               {...register('image')}
             />
-            {errors?.image && <p>{errors?.image?.message.toString()}</p>}
+            {errors?.image && <p>{errors?.image?.message!.toString()}</p>}
           </div>
           {iscourse ? (
             <div className="">
@@ -133,7 +133,7 @@ const ProductForm = () => {
                 placeholder="example@png"
                 {...register('pdfFile')}
               />
-              {errors?.pdfFile && <p>{errors?.pdfFile?.message.toString()}</p>}
+              {errors?.pdfFile && <p>{errors?.pdfFile?.message!.toString()}</p>}
             </div>
           ) : null}
 
