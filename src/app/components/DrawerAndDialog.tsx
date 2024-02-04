@@ -57,7 +57,9 @@ export function DrawerAndDialog({
             </DialogTitle>
             <DialogDescription>
               <p>
-                Make changes to your profile here. Click save when you're done.
+                {
+                  "Make changes to your profile here. Click save when you're done."
+                }
               </p>
             </DialogDescription>
           </DialogHeader>
@@ -81,7 +83,9 @@ export function DrawerAndDialog({
           </DrawerTitle>
           <DrawerDescription>
             <p>
-              Make changes to your profile here. Click save when you're done.
+              {
+                "Make changes to your profile here. Click save when you're done."
+              }
             </p>
           </DrawerDescription>
         </DrawerHeader>
