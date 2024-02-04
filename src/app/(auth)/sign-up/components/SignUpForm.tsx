@@ -39,7 +39,7 @@ const SignUpForm = () => {
         toast({
           variant: 'destructive',
           title: 'Uh oh! Something went wrong.',
-          description: error.response.data,
+          description: error?.response?.data,
         });
       } else {
         toast({
