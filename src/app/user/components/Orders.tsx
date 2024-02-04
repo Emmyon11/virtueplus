@@ -7,13 +7,14 @@ import Image from 'next/image';
 import OrderItem from './OrderItem';
 
 const Orders = async () => {
-  const { user } = await getServerSession();
-  const userOrder = await getUserOrders(user.email);
+  const session = await getServerSession();
+  const user = session?.user;
+  const userOrder = await getUserOrders(user?.email);
   return (
     <div className="basis-2/3 relative order-2 lg:order-1 min-h-96 bg-white overflow-clip lg:rounded-md lg:shadow-md lg:mb-10">
-      {userOrder.length > 0 ? (
+      {userOrder?.length > 0 ? (
         <div className="">
-          {userOrder.map((order) => {
+          {userOrder?.map((order) => {
             return (
               <div
                 key={order.id}
