@@ -61,6 +61,7 @@ const SignUpForm = () => {
             <Label>Name</Label>
             <Input
               type="text"
+              className="bg-primary-foreground"
               placeholder="Firstname Lastname"
               {...register('name')}
             />
@@ -71,6 +72,7 @@ const SignUpForm = () => {
           <div className="">
             <Label>Email</Label>
             <Input
+              className="bg-primary-foreground"
               type="email"
               placeholder="example@email.com"
               {...register('email')}
@@ -83,6 +85,7 @@ const SignUpForm = () => {
           <div className="">
             <Label>Password</Label>
             <Input
+              className="bg-primary-foreground"
               type="password"
               placeholder="12345"
               {...register('password')}
@@ -94,6 +97,7 @@ const SignUpForm = () => {
           <div className="">
             <Label>Verify Password</Label>
             <Input
+              className="bg-primary-foreground"
               type="password"
               placeholder="example@email.com"
               {...register('verify_password')}

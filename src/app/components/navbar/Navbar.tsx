@@ -14,13 +14,18 @@ const navbar = async () => {
 
   return (
     <main className="sticky z-50 top-0 backdrop-filter  flex backdrop-blur-lg inset-x-0 justify-around items-center p-4">
-      <div className="font-tektur lg:order-1 text-2xl cursor-pointer">
+      <div className="font-tektur order-1 text-2xl cursor-pointer">
         <Link href="/">
           VIRTUEPLUS<span className="text-green-400">2</span>
         </Link>
       </div>
+      <div className="order-3 lg:order-2">
+        <NavItems className1="" className2="">
+          {session?.user ? '' : <AuthButton className="lg:hidden" />}
+        </NavItems>
+      </div>
       {session ? (
-        <div className="grid grid-cols-2 lg:order-3 gap-5">
+        <div className="grid grid-cols-2 order-2 lg:order-3 gap-5">
           <UserMenuDropDown
             role={session?.user?.role!}
             email={session?.user?.email!}
@@ -39,11 +44,6 @@ const navbar = async () => {
       ) : (
         <AuthButton className="lg:order-3 hidden  lg:flex" />
       )}
-      <div className="lg:order-2">
-        <NavItems className1="" className2="">
-          {session?.user ? '' : <AuthButton className="" />}
-        </NavItems>
-      </div>
     </main>
   );
 };

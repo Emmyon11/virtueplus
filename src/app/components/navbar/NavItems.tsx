@@ -27,7 +27,7 @@ const NavItems: React.FC<NavItemsProps> = ({
 }) => {
   const [open, setOpen] = useState(false);
   return (
-    <main className="">
+    <main className="lg:flex ">
       <div
         onClick={() => setOpen(!open)}
         className="text-3xl cursor-pointer lg:hidden"

@@ -56,6 +56,7 @@ const LoginForm = () => {
           <div className="">
             <Label>Email</Label>
             <Input
+              className="bg-primary-foreground"
               type="email"
               placeholder="example@email.com"
               {...register('email')}
@@ -67,6 +68,7 @@ const LoginForm = () => {
           <div className="">
             <Label>Password</Label>
             <Input
+              className="bg-primary-foreground"
               type="password"
               placeholder="12345"
               {...register('password')}
