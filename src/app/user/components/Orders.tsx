@@ -15,7 +15,10 @@ const Orders = async () => {
         <div className="">
           {userOrder.map((order) => {
             return (
-              <div className="p-4 m-4 rounded-md shadow-sm bg-primary-foreground">
+              <div
+                key={order.id}
+                className="p-4 m-4 rounded-md shadow-sm bg-primary-foreground"
+              >
                 <div key={order.id} className="">
                   <div className="flex justify-between text-xs font-nunito text-gray-300 font-semibold">
                     <div className="">{formatDate(order.createdAt)}</div>

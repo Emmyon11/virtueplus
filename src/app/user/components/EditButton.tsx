@@ -9,8 +9,9 @@ const EditButton = () => {
     <DrawerAndDialog
       className="bg-gradient-to-r bg-green_custom text-white hover:bg-orange-500 hover:text-white"
       buttonText={'Edit Profile'}
-      children={<UserUpdateForm />}
-    />
+    >
+      <UserUpdateForm />
+    </DrawerAndDialog>
   );
 };
 export default EditButton;

@@ -52,9 +52,13 @@ export function DrawerAndDialog({
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
-            <DialogTitle>Edit profile</DialogTitle>
+            <DialogTitle>
+              <h1>Edit profile</h1>
+            </DialogTitle>
             <DialogDescription>
-              Make changes to your profile here. Click save when you're done.
+              <p>
+                Make changes to your profile here. Click save when you're done.
+              </p>
             </DialogDescription>
           </DialogHeader>
           {children}
@@ -72,15 +76,22 @@ export function DrawerAndDialog({
       </DrawerTrigger>
       <DrawerContent className="px-6">
         <DrawerHeader className="text-left">
-          <DrawerTitle>Edit profile</DrawerTitle>
+          <DrawerTitle>
+            {' '}
+            <h1>Edit</h1>
+          </DrawerTitle>
           <DrawerDescription>
-            Make changes to your profile here. Click save when you're done.
+            <p>
+              Make changes to your profile here. Click save when you're done.
+            </p>
           </DrawerDescription>
         </DrawerHeader>
         {children}
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
-            <Button variant="outline">Cancel</Button>
+            <Button variant="outline">
+              <h1></h1>Cancel
+            </Button>
           </DrawerClose>
         </DrawerFooter>
       </DrawerContent>
