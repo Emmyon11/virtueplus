@@ -82,7 +82,7 @@ const Footer = () => {
           })}
         </div>
         <div className="grid gap-3">
-          <div className="tracking-wider text-xl w- font-semibold">
+          <div className="tracking-wider  text-xl w- font-semibold">
             Our Newsletter
           </div>
           <div className="">
@@ -91,7 +91,7 @@ const Footer = () => {
           <NewsLetter
             classnameForm="gap-0"
             classnameButton="rounded-l-none hover:bg-green_custom hover:text-black text-xl duration-200"
-            classnameInput="rounded-r-none w-80"
+            classnameInput="rounded-r-none min-w-60 lg:w-80"
           />
         </div>
       </div>

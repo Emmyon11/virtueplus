@@ -6,6 +6,7 @@ import { TabsBar } from './components/TabBar';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
 import { authOptions } from '../api/auth/[...nextauth]/authOptions';
+import { NavTab } from './components/NavTab';
 
 export default async function AdminLayout({
   children,
@@ -17,15 +18,15 @@ export default async function AdminLayout({
     // redirect('/');
   }
   return (
-    <main className="lg:grid relative lg:grid-cols-5 min-h-svh">
+    <main className="lg:grid  relative lg:grid-cols-5 min-h-svh">
       <div className="lg:hidden fixed z-10 w-full p-2">
-        <TabsBar />
+        <NavTab />
       </div>
       <div className="hidden lg:block">
         <SideBar />
       </div>
 
-      <div className="col-span-4 relative bg-blue-100">{children}</div>
+      <div className="col-span-4 relative">{children}</div>
     </main>
   );
 }

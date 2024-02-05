@@ -15,9 +15,9 @@ export default function Error({
   }, [error]);
 
   return (
-    <div className="flex font-nunito flex-col items-center justify-center h-screen">
+    <div className="flex font-nunito p-6 flex-col items-center justify-center h-screen">
       <h1 className="text-4xl font-bold text-red-500 mb-4">Oops!</h1>
-      <p className="text-lg text-gray-600 mb-4">
+      <p className="text-lg text-center text-gray-600 mb-4">
         Something went wrong. Please try again later.
       </p>
       <button

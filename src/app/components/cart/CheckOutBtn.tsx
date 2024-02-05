@@ -15,7 +15,7 @@ const CheckOutBtn = ({ buttonText, children, className }: CheckOutBtnProp) => {
         'bg-gradient-to-r bg-green_custom text-white hover:bg-orange-500 hover:text-white',
         className
       )}
-      buttonText={buttonText}
+      buttonText={<h1>{buttonText}</h1>}
     >
       {children}
     </DrawerAndDialog>

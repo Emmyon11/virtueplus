@@ -16,7 +16,7 @@ const ProductPage = ({ products }: { products?: Product[] }) => {
   return (
     <main className="p-5">
       {goods && goods?.length > 0 && (
-        <div className="">
+        <div className="animate-fade-in">
           <h2 className="my-4 text-4xl font-mukta font-bold tracking-wider text-center text-gray-700">
             Goods
           </h2>
@@ -28,7 +28,7 @@ const ProductPage = ({ products }: { products?: Product[] }) => {
         </div>
       )}
       {courses && courses?.length > 0 && (
-        <div className="">
+        <div className="animate-fade-in">
           <h2 className="my-4 text-4xl font-mukta font-bold tracking-wider text-center text-gray-700">
             Courses
           </h2>
@@ -40,7 +40,7 @@ const ProductPage = ({ products }: { products?: Product[] }) => {
         </div>
       )}
       {services && services?.length > 0 && (
-        <div className="">
+        <div className="animate-fade-in">
           <h2 className="my-4 text-4xl font-mukta font-bold tracking-wider text-center text-gray-700">
             Goods
           </h2>

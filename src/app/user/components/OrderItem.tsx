@@ -26,7 +26,8 @@ const OrderItem = ({
               <Image
                 src={image}
                 alt={product.productTitle}
-                fill
+                width={100}
+                height={100}
                 className="absolute object-cover"
               />
             ) : (

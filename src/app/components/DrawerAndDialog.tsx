@@ -31,7 +31,7 @@ export function DrawerAndDialog({
   children,
   className,
 }: {
-  buttonText: string;
+  buttonText: string | React.ReactNode;
   children: React.ReactNode;
   className: string;
 }) {
@@ -48,7 +48,9 @@ export function DrawerAndDialog({
         onOpenChange={drawerState ? closedrawer : openDrawer}
       >
         <DialogTrigger asChild>
-          <Button className={cn(className)}>{buttonText}</Button>
+          <Button className={cn(className)} asChild>
+            {buttonText}
+          </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">
           <DialogHeader>
@@ -72,7 +74,7 @@ export function DrawerAndDialog({
   return (
     <Drawer open={open} onOpenChange={setOpen}>
       <DrawerTrigger asChild>
-        <Button size="sm" className={cn(className)}>
+        <Button size="sm" className={cn(className)} asChild>
           {buttonText}
         </Button>
       </DrawerTrigger>

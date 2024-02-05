@@ -8,7 +8,7 @@ const EditButton = () => {
   return (
     <DrawerAndDialog
       className="bg-gradient-to-r bg-green_custom text-white hover:bg-orange-500 hover:text-white"
-      buttonText={'Edit Profile'}
+      buttonText={<h1>Edit Profile</h1>}
     >
       <UserUpdateForm />
     </DrawerAndDialog>

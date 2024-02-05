@@ -33,7 +33,7 @@ const AOrderItem = ({ user, order }: { user: User; order: Order }) => {
           </Link>
 
           <div className="flex flex-col self-start">
-            <span className="line-clamp-1 text-sm font-medium mb-1">
+            <span className="line-clamp-1 text-xs lg:text-sm font-medium mb-1">
               {user.email}
             </span>
 
@@ -41,19 +41,6 @@ const AOrderItem = ({ user, order }: { user: User; order: Order }) => {
               {formatDate(order?.createdAt!)}
             </span>
           </div>
-        </div>
-
-        <div className="flex flex-col space-y-1 font-medium">
-          <span className="ml-auto line-clamp-1 text-sm">
-            {formatPrice(order.total)}
-          </span>
-          {/* {quantity > 1 ? (
-            <div className="text-end text-xs text-green_custom">
-              X {quantity}
-            </div>
-          ) : (
-            ''
-          )} */}
         </div>
       </div>
     </div>

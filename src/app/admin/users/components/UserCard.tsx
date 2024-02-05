@@ -20,6 +20,7 @@ const UserCard = ({ user }: { user: User }) => {
                 src={image}
                 alt={user.name}
                 fill
+                sizes="50%"
                 className="absolute object-cover"
               />
             ) : (

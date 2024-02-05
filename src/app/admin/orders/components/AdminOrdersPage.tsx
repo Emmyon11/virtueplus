@@ -9,14 +9,14 @@ const AdminOrdersPage = async () => {
   const orders = await getOrders();
 
   return (
-    <div className="min-h-screen bg-white overflow-clip p-6">
+    <div className="min-h-screen  pt-10 md:pt-6 overflow-clip p-6">
       {orders && orders?.length > 0 ? (
         <div className="">
           {orders.map((order) => {
             return (
               <div
                 key={order.id}
-                className="p-4 m-4 rounded-md shadow-sm bg-primary-foreground"
+                className="p-4 m-4 animate-fade-in rounded-md shadow-sm bg-primary-foreground"
               >
                 <div key={order.id} className="">
                   <div className="flex justify-between text-xs font-nunito text-gray-300 font-semibold">
@@ -27,15 +27,20 @@ const AdminOrdersPage = async () => {
                     <AOrderItem user={order.user} order={order} />
                   </div>
                 </div>
-                <div className="font-nunito text-xs  text-gray-400">
-                  {order.id}
+                <div className="flex justify-between items-baseline space-y-1 font-medium">
+                  <div className="font-nunito text-xs  text-gray-400">
+                    {order.id}
+                  </div>
+                  <div className="ml-auto line-clamp-1 text-sm">
+                    {formatPrice(order.total)}
+                  </div>
                 </div>
               </div>
             );
           })}
         </div>
       ) : (
-        <div>
+        <div className="p-6">
           <div className="h-full">
             <Image
               alt="empty order image"

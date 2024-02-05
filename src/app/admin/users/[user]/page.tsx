@@ -6,10 +6,10 @@ const User = async ({ params }: { params: { user: string } }) => {
   const userEmail = decodeURIComponent(params.user);
 
   return (
-    <div className="relative min-h-screen">
+    <div className="relative min-h-screen ">
       {/* Hello world */}
       <div
-        className="relative  pb-8 pt-5 lg:pt-8  hidden lg:flex items-center"
+        className="relative  pb-8 pt-5 lg:pt-8 animate-fade-in hidden lg:flex items-center"
         style={{
           minHeight: 500,
           backgroundImage: "url('/images/hero.jpg')",
@@ -32,7 +32,7 @@ const User = async ({ params }: { params: { user: string } }) => {
       </div>
 
       {/* Profile detail and form */}
-      <div className="lg:flex grid gap-5 lg:gap-0 lg:-mt-20 lg:mx-6">
+      <div className="lg:flex pt-10 md:pt-0 grid gap-5 animate-inbound delay-100 lg:gap-0 lg:-mt-20 lg:mx-6">
         <Orders userEmail={userEmail} />
         <ProfileDetail email={userEmail} />
       </div>

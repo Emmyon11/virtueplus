@@ -6,14 +6,14 @@ const UserPage = async () => {
   const users = await getUsers();
 
   return (
-    <div className="min-h-screen bg-white overflow-clip p-6">
+    <div className="min-h-screen pt-10 md:pt-6 overflow-clip p-6">
       {users?.length > 0 ? (
         <div className="">
           {users.map((user) => {
             return (
               <div
                 key={user.id}
-                className="p-4 m-4 rounded-md shadow-sm bg-primary-foreground"
+                className="p-4 m-4 rounded-md shadow-sm bg-primary-foreground animate-fade-in"
               >
                 <div className="">
                   <div className="flex justify-between text-xs font-nunito text-gray-300 font-semibold">

@@ -8,7 +8,7 @@ import Image from 'next/image';
 const Orders = async ({ userEmail }: { userEmail: string }) => {
   const userOrder = await getUserOrders(userEmail);
   return (
-    <div className="basis-2/3 relative order-2 lg:order-1 min-h-96 bg-white overflow-clip lg:rounded-md lg:shadow-md lg:mb-10">
+    <div className="basis-2/3 animate-inbound delay-100 relative order-2 lg:order-1 min-h-96 bg-white overflow-clip lg:rounded-md lg:shadow-md lg:mb-10">
       {userOrder.length > 0 ? (
         <div className="">
           {userOrder.map((order) => {

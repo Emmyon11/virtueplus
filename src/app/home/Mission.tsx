@@ -6,9 +6,10 @@ const Mission = () => {
   return (
     <main className="animate-fade-in">
       <div className="font-nunito grid md:grid-cols-2 md:p-4">
-        <div className="relative">
+        <div className="relative h-full">
           <Image
             fill
+            sizes="50%"
             src="/images/mision.jpg"
             alt="mission image"
             className="object-cover md:shadow-md"
