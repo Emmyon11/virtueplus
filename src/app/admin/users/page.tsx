@@ -6,7 +6,7 @@ const UserPage = async () => {
   const users = await getUsers();
 
   return (
-    <div className="min-h-screen pt-10 md:pt-6 overflow-clip p-6">
+    <div className="min-h-screen  overflow-clip p-6">
       {users?.length > 0 ? (
         <div className="">
           {users.map((user) => {

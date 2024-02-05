@@ -26,14 +26,15 @@ const side_links = [
 
 export function NavTab() {
   return (
-    <NavigationMenu>
-      <NavigationMenuList>
+    <NavigationMenu className="w-screen">
+      <NavigationMenuList className="flex w-screen justify-evenly">
         {side_links.map((link) => (
           <NavigationMenuItem key={link.link}>
             <Link href={link.link} legacyBehavior passHref>
               <NavigationMenuLink className={navigationMenuTriggerStyle()}>
-                <div className="">{link.icon}</div>
-                <div className="">{link.name}</div>
+                <div className="flex justify-center items-center gap-2">
+                  <div className="">{link.name}</div>
+                </div>
               </NavigationMenuLink>
             </Link>
           </NavigationMenuItem>
