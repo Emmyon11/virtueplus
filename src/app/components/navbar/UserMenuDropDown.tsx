@@ -8,11 +8,8 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Role } from '@prisma/client';
-import { signOut } from 'next-auth/react';
 import Link from 'next/link';
 import { ReactElement } from 'react';
-import { FaCartPlus } from 'react-icons/fa6';
-import Cart from '../cart/Cart';
 import SignOutBtn from '../SignOutBtn';
 import { ThemeToggle } from '../ThemeToggle';
 
@@ -23,35 +20,34 @@ type UserMenuDropDownProp = {
   email: string;
 };
 
-const UserMenuDropDown = ({
-  children,
-  role,
-  email,
-  name,
-}: UserMenuDropDownProp) => {
+const UserMenuDropDown = ({ children, role, name }: UserMenuDropDownProp) => {
   return (
     <main>
       <DropdownMenu>
         <DropdownMenuTrigger>{children}</DropdownMenuTrigger>
         <DropdownMenuContent>
-          <DropdownMenuLabel className="flex">
-            <div className="">{name}</div>
-            <div className="">
-              <ThemeToggle />
+          <DropdownMenuLabel asChild className="">
+            <div className="flex items-center hover:bg-primary-foreground gap-2 justify-between">
+              <Link href="/user" className="">
+                <div className="">{name}</div>
+              </Link>
+
+              <div className="">
+                <ThemeToggle />
+              </div>
             </div>
           </DropdownMenuLabel>
           <DropdownMenuSeparator />
-          <div className="">
-            <DropdownMenuItem></DropdownMenuItem>
+          <div className="font-nunito text-xl font-bold">
             {role === 'Admin' ? (
-              <DropdownMenuItem>
+              <DropdownMenuItem className=" duration-100 hover:bg-primary-foreground hover:text-orange-400">
                 <Link href="/admin">Admin</Link>
               </DropdownMenuItem>
             ) : (
               <DropdownMenuItem>user</DropdownMenuItem>
             )}
 
-            <DropdownMenuItem>
+            <DropdownMenuItem className="text-red-500  duration-100 hover:bg-primary-foreground">
               <SignOutBtn />
             </DropdownMenuItem>
           </div>

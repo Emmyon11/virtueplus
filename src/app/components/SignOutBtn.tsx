@@ -4,14 +4,14 @@ import { signOut } from 'next-auth/react';
 
 const SignOutBtn = () => {
   return (
-    <Button
+    <div
       onClick={async () => {
         await signOut();
       }}
-      variant="destructive"
+      className=""
     >
       Sign Out
-    </Button>
+    </div>
   );
 };
 export default SignOutBtn;

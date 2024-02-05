@@ -8,12 +8,13 @@ import { getInitials } from '@/helpers/getInitials';
 import UserMenuDropDown from './UserMenuDropDown';
 import Cart from '../cart/Cart';
 import Link from 'next/link';
+import { ThemeToggle } from '../ThemeToggle';
 
 const navbar = async () => {
   const session = await getServerSession(authOptions);
 
   return (
-    <main className="sticky z-50 top-0 backdrop-filter  flex backdrop-blur-lg inset-x-0 justify-around items-center p-4">
+    <main className="sticky z-50 top-0 backdrop-filter  flex backdrop-blur-lg inset-x-0 justify-between lg:justify-around items-center p-4">
       <div className="font-tektur order-1 text-2xl cursor-pointer">
         <Link href="/">
           VIRTUEPLUS<span className="text-green-400">2</span>
@@ -24,6 +25,13 @@ const navbar = async () => {
           {session?.user ? '' : <AuthButton className="lg:hidden" />}
         </NavItems>
       </div>
+      {!session ? (
+        <div className="order-2 lg:order-3">
+          <ThemeToggle />
+        </div>
+      ) : (
+        ''
+      )}
       {session ? (
         <div className="grid grid-cols-2 order-2 lg:order-3 gap-5">
           <UserMenuDropDown
