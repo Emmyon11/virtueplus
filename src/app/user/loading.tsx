@@ -1,4 +1,5 @@
 import { Skeleton } from '@/components/ui/skeleton';
+import { randomUUID } from 'crypto';
 
 export default function Loading() {
   // You can add any UI inside Loading, including a Skeleton.

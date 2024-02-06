@@ -3,9 +3,9 @@ import AboutText from './components/AboutText';
 
 const About = () => {
   return (
-    <div className="relative min-h-screen animate-inbound bg-secondary flex flex-col">
+    <div className="relative min-h-screen  bg-secondary flex flex-col">
       {/* image section */}
-      <div className="h-3/5">
+      <div className="animate-inbound duration-300 h-3/5">
         <AboutImage />
       </div>
 

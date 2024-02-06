@@ -2,6 +2,7 @@ import ProfileDetail from './components/ProfileDetail';
 import Orders from './components/Orders';
 import { getServerSession } from 'next-auth';
 import { redirect } from 'next/navigation';
+import Loading from './loading';
 const User = async () => {
   const session = await getServerSession();
   if (!session) {

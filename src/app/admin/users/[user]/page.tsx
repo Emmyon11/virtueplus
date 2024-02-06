@@ -1,7 +1,5 @@
 import ProfileDetail from './components/ProfileDetail';
 import Orders from './components/Orders';
-import { getServerSession } from 'next-auth';
-import { redirect } from 'next/navigation';
 const User = async ({ params }: { params: { user: string } }) => {
   const userEmail = decodeURIComponent(params.user);
 

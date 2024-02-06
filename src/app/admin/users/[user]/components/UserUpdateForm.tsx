@@ -14,7 +14,7 @@ import { getUser, updateUser } from '@/app/admin/users/action';
 import { User } from '@prisma/client';
 import { useDrawerState } from '@/utils/store';
 
-const UserUpdateForm = () => {
+const UserUpdateForm = ({ email }: { email: string }) => {
   const {
     register,
     handleSubmit,
@@ -28,19 +28,18 @@ const UserUpdateForm = () => {
 
   const router = useRouter();
 
-  !session.user && router.push('/');
+  session.user.role !== 'Admin' && router.push('/');
 
   const { data: user, isLoading } = useQuery(['user', session.user.email], () =>
-    getUser(session.user.email)
+    getUser(email)
   );
 
   const updateUserData = useMutation((data: Partial<User>) => {
-    return updateUser(session.user.email, data);
+    return updateUser(email, data);
   });
 
   const submit = async (data: TUserUpdateFormSchema) => {
     try {
-      console.log(data);
       const res = await updateUserData.mutateAsync(data);
       if (res) {
         toast({

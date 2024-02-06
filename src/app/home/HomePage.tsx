@@ -10,7 +10,7 @@ const HomePage = () => {
         {/* first section for text */}
         <div className="p-8 flex flex-col w-full justify-center items-center gap-3 lg:gap-6 absolute top-0 bottom-0 z-20 backdrop-filter backdrop-blur-sm lg:static">
           {/* Text */}
-          <div className="backdrop-filter backdrop-blur-sm ">
+          <div className=" ">
             <div className=" text-5xl font-mukta  font-bold uppercase mb-3 md:text-3xl lg:text-5xl xl:text-6xl">
               Lorem ipsum dolor sit amet
             </div>

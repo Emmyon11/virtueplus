@@ -5,7 +5,6 @@ import NotFoundDb from './NotFoundDb';
 
 const ProductByCategory = async ({ category }: { category: ProductTypes }) => {
   const products = await getSingleCategory(category);
-  if (!products) return;
   return (
     <main className="animate-fade-in delay-75">
       <div className="">
