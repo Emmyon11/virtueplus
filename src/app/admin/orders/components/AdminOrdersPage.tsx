@@ -9,7 +9,7 @@ const AdminOrdersPage = async () => {
   const orders = await getOrders();
 
   return (
-    <div className="min-h-screen  pt-10 md:pt-6 overflow-clip p-6">
+    <div className="min-h-screen  relative pt-10 md:pt-6 overflow-clip p-6">
       {orders && orders?.length > 0 ? (
         <div className="">
           {orders.map((order) => {

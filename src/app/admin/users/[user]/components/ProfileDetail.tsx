@@ -18,12 +18,12 @@ const ProfileDetail = async ({ email }: { email: string }) => {
           </div>
           <Image
             alt="profile image"
-            height={200}
-            width={200}
+            height={500}
+            width={500}
             placeholder="blur"
             blurDataURL={'/images/avater.svg'}
             src={user?.image ? user.image : '/images/avater.svg'}
-            className="relative"
+            className="object-contain"
           />
         </div>
       </div>

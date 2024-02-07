@@ -43,7 +43,7 @@ const Orders = async () => {
                     );
                   })}
                 </div>
-                <div className="font-nunito font-bold text-slate-700">
+                <div className="font-nunito font-bold text-primary/70">
                   {formatPrice(order.total)}
                 </div>
               </div>

@@ -33,16 +33,16 @@ const ProfileDetail = async () => {
           <EditButton />
         </div>
       </div>
-      <div className="grid gap-6 font-nunito">
+      <div className="grid gap-6 font-nunito text-slate-800">
         <div className="text-center">
-          <h3 className="text-lg text-slate-700">{user?.name}</h3>
+          <h3 className="text-lg ">{user?.name}</h3>
           <hr className="my-4" />
-          <p className="text-primary/70 ">
-            <span className="text-primary font-bold">Email: </span>
+          <p className="text-slate-600 ">
+            <span className="font-bold text-slate-800">Email: </span>
             {user?.email}
           </p>
-          <p className="text-primary/70">
-            <span className="text-primary font-bold">Role: </span>
+          <p className="text-slate-600">
+            <span className="text-slate-800 font-bold">Role: </span>
             {user?.role}
           </p>
         </div>

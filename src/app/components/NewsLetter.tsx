@@ -66,7 +66,7 @@ export const NewsLetter: React.FC<NewsLetterProp> = ({
               <FormControl>
                 <Input
                   className={cn(
-                    'outline-none ring-0  shadow-md  min-w-40',
+                    'focus-visible:ring-0  shadow-md  min-w-40',
                     classnameInput
                   )}
                   {...field}

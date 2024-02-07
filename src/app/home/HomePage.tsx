@@ -11,19 +11,19 @@ const HomePage = () => {
         <div className="p-8 flex flex-col w-full justify-center items-center gap-3 lg:gap-6 absolute top-0 bottom-0 z-20 backdrop-filter backdrop-blur-sm lg:static">
           {/* Text */}
           <div className=" ">
-            <div className=" text-5xl font-mukta  font-bold uppercase mb-3 md:text-3xl lg:text-5xl xl:text-6xl">
-              Lorem ipsum dolor sit amet
+            <div className=" text-5xl font-mukta  text-slate-800 font-bold capitalize mb-3 md:text-3xl lg:text-5xl xl:text-6xl">
+              For financial substenance
             </div>
-            <div className="text-sm  md:text-xs  lg:text-base text-gray-500">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Illum
-              commodi ipsa distinctio.
+            <div className="text-sm  md:text-xs  lg:text-base  text-gray-500">
+              Fostering Financial Empowerment: Building Bridges for Micro
+              Enterprises and Low-Income Communities in Nigeria.
             </div>
           </div>
           {/* Form */}
           <div className="mt-2 w-full">
             <NewsLetter
-              classnameButton="rounded-none border border-secondary border-l-0 tracking-widest w-40 uppercase font-normal hover:bg-secondary hover:text-primary  text-lg h-10"
-              classnameInput="rounded-none text-secondary  shadow-none h-10 focus:outline-none focus-ring-0 focus:border-secondary"
+              classnameButton="rounded-none border border-slate-800 border-l-0 tracking-widest w-40 uppercase font-normal hover:bg-secondary hover:text-primary  text-lg h-10"
+              classnameInput="rounded-none text-slate-800 shadow-none h-10 border-slate-800"
               classnameForm="gap-0 "
             />
           </div>

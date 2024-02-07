@@ -8,7 +8,7 @@ const ProductByCategory = async ({ category }: { category: ProductTypes }) => {
   return (
     <main className="animate-fade-in delay-75">
       <div className="">
-        <h2 className="my-4 text-4xl font-mukta font-bold tracking-wider text-center text-gray-700">
+        <h2 className="my-4 text-4xl font-mukta font-bold tracking-wider text-center text-primary/70">
           {category}
         </h2>
         <div className="relative grid sm:grid-cols-2 md:grid-col-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 ">

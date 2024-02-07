@@ -17,7 +17,7 @@ const ProductPage = ({ products }: { products?: Product[] }) => {
     <main className="p-5">
       {goods && goods?.length > 0 && (
         <div className="animate-fade-in">
-          <h2 className="my-4 text-4xl font-mukta font-bold tracking-wider text-center text-gray-700">
+          <h2 className="my-4 text-4xl font-mukta font-bold tracking-wider text-center text-primary/70">
             Goods
           </h2>
           <div className="grid sm:grid-cols-2 md:grid-col-3 lg:grid-cols-4 xl:grid-cols-5 gap-5 ">
@@ -29,7 +29,7 @@ const ProductPage = ({ products }: { products?: Product[] }) => {
       )}
       {courses && courses?.length > 0 && (
         <div className="animate-fade-in">
-          <h2 className="my-4 text-4xl font-mukta font-bold tracking-wider text-center text-gray-700">
+          <h2 className="my-4 text-4xl font-mukta font-bold tracking-wider text-center text-primary/70">
             Courses
           </h2>
           <div className="grid sm:grid-cols-2 md:grid-col-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
@@ -41,7 +41,7 @@ const ProductPage = ({ products }: { products?: Product[] }) => {
       )}
       {services && services?.length > 0 && (
         <div className="animate-fade-in">
-          <h2 className="my-4 text-4xl font-mukta font-bold tracking-wider text-center text-gray-700">
+          <h2 className="my-4 text-4xl font-mukta font-bold tracking-wider text-center text-primary/70">
             Goods
           </h2>
           <div className="grid sm:grid-cols-2 md:grid-col-3 lg:grid-cols-4 xl:grid-cols-5 gap-5">
