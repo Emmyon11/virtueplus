@@ -15,3 +15,8 @@ export const getOrders = async () => {
     console.log(error);
   }
 };
+export type OrdersReturnType = ReturnType<typeof getOrders> extends Promise<
+  infer T
+>
+  ? T
+  : never;

@@ -36,3 +36,27 @@ export function formatDate(date: Date) {
 
   return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
 }
+
+export function getMonthName(monthNumber: number): string {
+  // Create a Date object with the provided month number
+  const date: Date = new Date(2000, monthNumber - 1); // Subtract 1 because month numbers are zero-indexed
+
+  // Array of month names
+  const monthNames: string[] = [
+    'January',
+    'February',
+    'March',
+    'April',
+    'May',
+    'June',
+    'July',
+    'August',
+    'September',
+    'October',
+    'November',
+    'December',
+  ];
+
+  // Get the month name from the monthNames array
+  return monthNames[date.getMonth()];
+}

@@ -1,4 +1,11 @@
-import { ProductTypes, Role } from '@prisma/client';
+import {
+  Order,
+  OrderItem,
+  OrderStatus,
+  User as FullUser,
+  ProductTypes,
+  Role,
+} from '@prisma/client';
 import { DefaultSession, DefaultUser, User } from 'next-auth';
 
 declare module 'next-auth' {
