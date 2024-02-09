@@ -18,12 +18,12 @@ const ProfileDetail = async ({ email }: { email: string }) => {
           </div>
           <Image
             alt="profile image"
-            height={500}
-            width={500}
+            height={300}
+            width={300}
             placeholder="blur"
             blurDataURL={'/images/avater.svg'}
             src={user?.image ? user.image : '/images/avater.svg'}
-            className="object-contain"
+            className="object-cover"
           />
         </div>
       </div>
@@ -34,14 +34,14 @@ const ProfileDetail = async ({ email }: { email: string }) => {
       </div>
       <div className="grid gap-6 font-nunito">
         <div className="text-center">
-          <h3 className="text-lg text-slate-700">{user?.name}</h3>
+          <h3 className="text-lg font-bold text-slate-800">{user?.name}</h3>
           <hr className="my-4" />
-          <p className="text-primary/70 ">
-            <span className="text-primary font-bold">Email: </span>
+          <p className="text-slate-500 ">
+            <span className="text-slate-800 font-bold">Email: </span>
             {user?.email}
           </p>
-          <p className="text-primary/70">
-            <span className="text-primary font-bold">Role: </span>
+          <p className="text-slate-500">
+            <span className="text-slate-800 font-bold">Role: </span>
             {user?.role}
           </p>
         </div>

@@ -45,7 +45,7 @@ const TopCard = ({ allData }: { allData: AllDataReturnType }) => {
 
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Sales</CardTitle>
+          <CardTitle className="text-sm font-medium">Products</CardTitle>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -61,13 +61,12 @@ const TopCard = ({ allData }: { allData: AllDataReturnType }) => {
           </svg>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">+12,234</div>
-          <p className="text-xs text-muted-foreground">+19% from last month</p>
+          <div className="text-2xl font-bold">{allData?.products?.length}</div>
         </CardContent>
       </Card>
       <Card>
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-          <CardTitle className="text-sm font-medium">Active Now</CardTitle>
+          <CardTitle className="text-sm font-medium">Users</CardTitle>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
@@ -82,8 +81,7 @@ const TopCard = ({ allData }: { allData: AllDataReturnType }) => {
           </svg>
         </CardHeader>
         <CardContent>
-          <div className="text-2xl font-bold">+573</div>
-          <p className="text-xs text-muted-foreground">+201 since last hour</p>
+          <div className="text-2xl font-bold">{allData?.users?.length}</div>
         </CardContent>
       </Card>
     </div>
