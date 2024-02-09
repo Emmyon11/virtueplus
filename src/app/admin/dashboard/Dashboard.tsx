@@ -1,6 +1,3 @@
-import { DateRangePicker } from './components/Date-range-picker';
-import { Button } from '@/components/ui/button';
-
 import {
   Card,
   CardContent,
@@ -12,7 +9,7 @@ import { Overview } from './components/OverView';
 import { RecentSales } from './components/RecentSales';
 import { Metadata } from 'next';
 import { getAllData } from '../action';
-import { sortOrdersByMonth, sortProductsByMonth } from '@/helpers/sortByMonths';
+import { sortOrdersByMonth } from '@/helpers/sortByMonths';
 import { getMonthName } from '@/lib/utils';
 import TopCard from './components/TopCard';
 
@@ -41,7 +38,7 @@ export default async function DashboardPage() {
 
   return (
     <>
-      <div className="flex-col flex">
+      <div className=" mt-3 md:mt-0 flex-col flex">
         <div className="flex-1 space-y-4 p-8 pt-6">
           <TopCard allData={data} />
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">

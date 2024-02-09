@@ -29,7 +29,9 @@ const UserMenuDropDown = ({ children, role, name }: UserMenuDropDownProp) => {
           <DropdownMenuLabel asChild className="">
             <div className="flex items-center hover:bg-primary-foreground gap-2 justify-between">
               <Link href="/user" className="">
-                <div className="">{name}</div>
+                <DropdownMenuItem>
+                  <div className="">{name}</div>
+                </DropdownMenuItem>
               </Link>
 
               <div className="">
@@ -40,9 +42,11 @@ const UserMenuDropDown = ({ children, role, name }: UserMenuDropDownProp) => {
           <DropdownMenuSeparator />
           <div className="font-nunito text-xl font-bold">
             {role === 'Admin' ? (
-              <DropdownMenuItem className=" duration-100 hover:bg-primary-foreground hover:text-orange-400">
-                <Link href="/admin">Admin</Link>
-              </DropdownMenuItem>
+              <Link href="/admin">
+                <DropdownMenuItem className=" duration-100 hover:bg-primary-foreground hover:text-orange-400">
+                  Admin
+                </DropdownMenuItem>
+              </Link>
             ) : (
               <DropdownMenuItem>user</DropdownMenuItem>
             )}

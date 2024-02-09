@@ -9,20 +9,20 @@ export function RecentSales({ orders }: { orders: OrdersReturnType }) {
     <div className="space-y-8">
       {orders.map((order) => {
         return (
-          <div key={order.id} className="flex items-center">
+          <div key={order.id} className="flex items-end ">
             <Avatar className="h-9 w-9">
               <AvatarImage src={order.user.image} alt="Avatar" />
               <AvatarFallback>{getInitials(order.user.name)}</AvatarFallback>
             </Avatar>
-            <div className="ml-4 space-y-1">
-              <p className="text-sm md:text-xs xl:text-sm font-medium leading-none">
+            <div className=" ml-4 space-y-1">
+              <p className="text-xs xl:text-sm font-medium leading-none">
                 {order.user.name}
               </p>
-              <p className="text-sm md:text-xs xl:text-sm text-muted-foreground">
+              <p className="text-xs font-light xl:text-sm leading-none w-14 text-nowrap overflow-hidden text-ellipsis">
                 {order.user.email}
               </p>
             </div>
-            <div className="md:text-sm xl:text-base ml-auto font-medium">
+            <div className="text-xs xl:text-sm ml-auto font-medium">
               {formatPrice(order.total)}
             </div>
           </div>
