@@ -15,14 +15,14 @@ export function RecentSales({ orders }: { orders: OrdersReturnType }) {
               <AvatarFallback>{getInitials(order.user.name)}</AvatarFallback>
             </Avatar>
             <div className="ml-4 space-y-1">
-              <p className="text-sm font-medium leading-none">
+              <p className="text-sm md:text-xs xl:text-sm font-medium leading-none">
                 {order.user.name}
               </p>
-              <p className="text-sm text-muted-foreground">
+              <p className="text-sm md:text-xs xl:text-sm text-muted-foreground">
                 {order.user.email}
               </p>
             </div>
-            <div className="ml-auto font-medium">
+            <div className="md:text-sm xl:text-base ml-auto font-medium">
               {formatPrice(order.total)}
             </div>
           </div>

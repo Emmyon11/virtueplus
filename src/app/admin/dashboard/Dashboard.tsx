@@ -41,11 +41,11 @@ export default async function DashboardPage() {
 
   return (
     <>
-      <div className="hidden flex-col md:flex">
+      <div className="flex-col flex">
         <div className="flex-1 space-y-4 p-8 pt-6">
           <TopCard allData={data} />
           <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-7">
-            <Card className="col-span-4">
+            <Card className="lg:col-span-4">
               <CardHeader>
                 <CardTitle>Overview</CardTitle>
               </CardHeader>
@@ -53,7 +53,7 @@ export default async function DashboardPage() {
                 <Overview data={ordersArr} />
               </CardContent>
             </Card>
-            <Card className="col-span-3">
+            <Card className="lg:col-span-3">
               <CardHeader>
                 <CardTitle>Recent Sales</CardTitle>
                 <CardDescription>
