@@ -23,7 +23,7 @@ const ProfileDetail = async ({ email }: { email: string }) => {
             placeholder="blur"
             blurDataURL={'/images/avater.svg'}
             src={user?.image ? user.image : '/images/avater.svg'}
-            className="object-cover"
+            className="relative"
           />
         </div>
       </div>

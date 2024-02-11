@@ -6,13 +6,17 @@ import { LoginFormSchema, TLoginFormSchema } from '../../ztype';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Button } from '@/components/ui/button';
 import { FaSpinner } from 'react-icons/fa6';
-import { signIn } from 'next-auth/react';
+import { signIn, useSession } from 'next-auth/react';
 import { toast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
-import { revalidatePath } from 'next/cache';
+
 import { refreshPath } from '../action';
+import { use, useEffect } from 'react';
+import Link from 'next/link';
 
 const LoginForm = () => {
+  const session = useSession();
+
   const {
     register,
     handleSubmit,
@@ -46,6 +50,7 @@ const LoginForm = () => {
       console.log(error);
     }
   };
+
   return (
     <main>
       <div className="">
@@ -89,6 +94,14 @@ const LoginForm = () => {
             </Button>
           </div>
         </form>
+        <div className=" text-center p-4">
+          <Link
+            className="transition-all text-blue-200 duration-200 hover:bg-gradient-to-r hover:from-orange-400 hover:to-green_custom hover:bg-clip-text hover:text-transparent"
+            href="/sign-up"
+          >
+            Not registered?
+          </Link>
+        </div>
       </div>
     </main>
   );

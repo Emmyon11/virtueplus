@@ -9,8 +9,11 @@ import axios from 'axios';
 import { FaSpinner } from 'react-icons/fa6';
 import { toast } from '@/components/ui/use-toast';
 import { useRouter } from 'next/navigation';
+import { useSession } from 'next-auth/react';
+import Link from 'next/link';
 
 const SignUpForm = () => {
+  const session = useSession();
   const {
     register,
     handleSubmit,
@@ -18,6 +21,9 @@ const SignUpForm = () => {
   } = useForm<TSignUpFormSchema>({ resolver: zodResolver(SignUpFormSchema) });
 
   const router = useRouter();
+  if (session?.data?.user) {
+    router.push('/');
+  }
 
   const submit = async ({ name, email, password }: TSignUpFormSchema) => {
     try {
@@ -120,6 +126,14 @@ const SignUpForm = () => {
             </Button>
           </div>
         </form>
+        <div className=" text-center p-4">
+          <Link
+            className="transition-all text-blue-200 duration-200 hover:bg-gradient-to-r hover:from-orange-400 hover:to-green_custom hover:bg-clip-text hover:text-transparent"
+            href="/login"
+          >
+            Registered?
+          </Link>
+        </div>
       </div>
     </main>
   );

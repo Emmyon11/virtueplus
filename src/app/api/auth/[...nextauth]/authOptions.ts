@@ -1,5 +1,6 @@
 import bcrypt from 'bcrypt';
 import CredentialsProvider from 'next-auth/providers/credentials';
+import GoogleProvider from 'next-auth/providers/google';
 import prisma from '@/lib/primaDB';
 import { PrismaAdapter } from '@next-auth/prisma-adapter';
 import { AuthOptions } from 'next-auth';
@@ -8,6 +9,33 @@ export const authOptions: AuthOptions = {
   // Configure one or more authentication providers
   adapter: PrismaAdapter(prisma),
   providers: [
+    GoogleProvider({
+      clientId: process.env.GOOGLE_CLIENT_ID,
+      clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+      allowDangerousEmailAccountLinking: true,
+      async profile(credentials, req) {
+        // Check if the user exists in the database
+        const existingUser = await prisma.user.findUnique({
+          where: {
+            email: credentials.email,
+          },
+        });
+
+        if (!existingUser) {
+          // If the user doesn't exist, throw an error or handle it as per your application's requirements
+          throw new Error('User does not exist');
+        }
+
+        // Continue the authentication process by returning the user's information
+        return {
+          name: existingUser.name,
+          email: existingUser.email,
+          image: existingUser.image,
+          id: existingUser.id,
+          role: existingUser.role,
+        };
+      },
+    }),
     CredentialsProvider({
       // The name to display on the sign in form (e.g. 'Sign in with...')
       name: 'Credentials',
